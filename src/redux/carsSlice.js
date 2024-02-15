@@ -15,6 +15,7 @@ const INITIAL_STATE = {
   items: [],
   isLoading: false,
   error: null,
+  favorites: [],
 };
 
 const carsSlice = createSlice({

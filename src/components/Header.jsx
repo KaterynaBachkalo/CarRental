@@ -1,10 +1,15 @@
 import React from "react";
+import Iconlogo from "../img/logo.png";
 
 const Header = () => {
   return (
     <header>
       <div>
-        <nav>Header</nav>
+        <nav>
+          <a href="/">
+            <img src={Iconlogo} alt="Logo" width="80px" />
+          </a>
+        </nav>
       </div>
     </header>
   );
