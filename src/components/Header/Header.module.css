@@ -7,7 +7,8 @@
   margin: 0 auto;
 }
 
-.navigation {
+.navigation,
+.list {
   display: flex;
   align-items: center;
 }
@@ -42,7 +43,8 @@
 
 .mainLink:hover,
 .catalogLink:hover,
-.favoritesLink:hover .tel:hover {
+.favoritesLink:hover,
+.tel:hover {
   color: rgb(255, 255, 255);
   background-color: rgb(11, 68, 205);
   border-radius: 12px;

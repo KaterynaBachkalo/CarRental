@@ -12,30 +12,47 @@ const Header = () => {
           <Link to="/">
             <img className={css.logo} src={Iconlogo} alt="Logo" />
           </Link>
-          <Link
-            to="/"
-            className={`${css.mainLink} ${
-              location.pathname === "/" ? css.active : ""
-            }`}
-          >
-            Main
-          </Link>
-          <Link
-            to="/catalog"
-            className={`${css.catalogLink} ${
-              location.pathname === "/catalog" ? css.active : ""
-            }`}
-          >
-            Car fleet
-          </Link>
-          <Link
-            to="/favorites"
-            className={`${css.favoritesLink} ${
-              location.pathname === "/favorites" ? css.active : ""
-            }`}
-          >
-            Favorites
-          </Link>
+          <ul className={css.list}>
+            <li>
+              <Link
+                to="/"
+                className={`${css.mainLink} ${
+                  location.pathname === "/" ? css.active : ""
+                }`}
+              >
+                Home
+              </Link>
+              {/* <NavLink to="/" className={css.mainLink}>
+                Home
+              </NavLink> */}
+            </li>
+            <li>
+              <Link
+                to="/catalog"
+                className={`${css.catalogLink} ${
+                  location.pathname === "/catalog" ? css.active : ""
+                }`}
+              >
+                Catalog
+              </Link>
+              {/* <NavLink to="/catalog" className={css.catalogLink}>
+                Catalog
+              </NavLink> */}
+            </li>
+            <li>
+              <Link
+                to="/favorites"
+                className={`${css.favoritesLink} ${
+                  location.pathname === "/favorites" ? css.active : ""
+                }`}
+              >
+                Favorites
+              </Link>
+              {/* <NavLink to="/favorites" className={css.favoritesLink}>
+                Favorites
+              </NavLink> */}
+            </li>
+          </ul>
           <a className={css.tel} href="tel:+380730000000">
             +380730000000
           </a>
