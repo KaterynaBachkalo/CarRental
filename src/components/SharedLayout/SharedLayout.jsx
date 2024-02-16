@@ -2,14 +2,14 @@ import { Outlet } from "react-router-dom";
 import { Suspense } from "react";
 import { ToastContainer } from "react-toastify";
 
-import Header from "./Header";
-import Loader from "./Loader";
+import Header from "../Header/Header";
+import Loader from "../Loader/Loader";
 
 import "react-toastify/dist/ReactToastify.css";
 
 export const SharedLayout = () => {
   return (
-    <div>
+    <div className="container">
       <Header />
       <ToastContainer
         position="top-right"

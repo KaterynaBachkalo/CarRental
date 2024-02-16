@@ -51,3 +51,12 @@ img {
 .body-scroll-lock {
   overflow: hidden;
 }
+
+.container {
+  width: 1214px;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}

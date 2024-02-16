@@ -1,0 +1,143 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  background-color: rgba(18, 20, 23, 0.5);
+}
+
+.container {
+  max-width: 541px;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  max-height: calc(100vh - 20px);
+}
+
+.modal {
+  position: relative;
+  padding: 40px;
+  border-radius: 24px;
+
+  background: rgb(255, 255, 255);
+}
+
+.button {
+  display: block;
+  width: 168px;
+  border-radius: 12px;
+
+  background: rgb(52, 112, 255);
+  color: rgb(255, 255, 255);
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 12px 50px 12px 50px;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: rgb(11, 68, 205);
+}
+
+.btnClose {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+}
+
+.image {
+  display: block;
+  width: 461px;
+  margin-bottom: 14px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  color: rgb(18, 20, 23);
+  margin-bottom: 8px;
+}
+
+.titleModel {
+  color: rgb(52, 112, 255);
+}
+
+.subtitle {
+  display: flex;
+  align-items: center;
+
+  color: rgba(18, 20, 23, 0.5);
+  font-size: 12px;
+  line-height: 18px;
+  margin: 0 0 4px;
+}
+
+.stroke::after {
+  content: "";
+  display: inline-block;
+  height: 16px;
+  width: 1px; /* Ширина вашої вертикальної лінії */
+  background-color: rgba(18, 20, 23, 0.1); /* Колір лінії */
+  margin: 0 6px; /* Відстань між словами і лінією */
+}
+
+.description {
+  color: rgb(18, 20, 23);
+
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 24px;
+}
+
+.titleDesc {
+  color: rgb(18, 20, 23);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  margin-bottom: 8px;
+}
+
+.descriptionWrap {
+  margin-bottom: 24px;
+}
+
+.conditionWrap {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.text {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: -2%;
+  color: rgb(54, 53, 53);
+}
+
+.number {
+  color: rgb(52, 112, 255);
+}
+
+.conditionBtn {
+  display: block;
+  border-radius: 35px;
+  padding: 7px 14px;
+  background: rgb(249, 249, 249);
+
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: -2%;
+  color: rgb(54, 53, 53);
+}

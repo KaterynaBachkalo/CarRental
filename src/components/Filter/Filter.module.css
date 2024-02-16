@@ -1,0 +1,106 @@
+.form {
+  display: flex;
+  gap: 18px;
+  width: 859px;
+  align-items: flex-end;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  color: rgb(138, 138, 137);
+  margin-bottom: 8px;
+}
+
+.labelwrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputwrap {
+  display: flex;
+}
+
+.button {
+  cursor: pointer;
+  display: block;
+  height: 48px;
+  padding: 14px 44px;
+  border-radius: 12px;
+  border: none;
+
+  background: rgb(52, 112, 255);
+  color: rgb(255, 255, 255);
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: rgb(11, 68, 205);
+}
+
+.inputContainer {
+  position: relative;
+}
+
+input {
+  color: rgb(18, 20, 23);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+
+  height: 48px;
+  border: none;
+  outline: none;
+  background: rgb(247, 247, 251);
+}
+
+.inputBrand {
+  border-radius: 14px;
+  width: 224px;
+  padding: 14px 89px 14px 18px;
+}
+
+.inputPrice {
+  border-radius: 14px;
+  width: 125px;
+  padding: 14px 18px;
+}
+
+.inputFrom {
+  border-right: 1px solid rgba(138, 138, 137, 0.2);
+  border-radius: 14px 0px 0px 14px;
+  background: rgb(247, 247, 251);
+  width: 160px;
+  padding: 14px 24px;
+}
+
+.inputTo {
+  width: 160px;
+  border-radius: 0px 14px 14px 0px;
+  background: rgb(247, 247, 251);
+  padding: 14px 24px;
+}
+
+input::placeholder {
+  color: rgb(18, 20, 23);
+
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.icon {
+  cursor: pointer;
+  stroke: rgb(18, 20, 23);
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+}

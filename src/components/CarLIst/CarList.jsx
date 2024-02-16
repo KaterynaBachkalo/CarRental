@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import CarItem from "./CarItem";
+import CarItem from "../CarItem/CarItem";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCars } from "../redux/selectors";
-import { fetchCarsThunk } from "../redux/operations";
+import { selectCars } from "../../redux/selectors";
+import { fetchCarsThunk } from "../../redux/operations";
 import css from "./CarList.module.css";
 
 const CarList = () => {
@@ -28,6 +28,12 @@ const CarList = () => {
             type,
             functionalities,
             id,
+            fuelConsumption,
+            engineSize,
+            description,
+            accessories,
+            rentalConditions,
+            mileage,
           }) => (
             <CarItem
               key={id}
@@ -41,6 +47,12 @@ const CarList = () => {
               type={type}
               id={id}
               functionalities={functionalities}
+              fuelConsumption={fuelConsumption}
+              engineSize={engineSize}
+              description={description}
+              accessories={accessories}
+              rentalConditions={rentalConditions}
+              mileage={mileage}
             />
           )
         )}

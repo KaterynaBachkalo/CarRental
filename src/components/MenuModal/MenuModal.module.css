@@ -1,0 +1,32 @@
+.dropdownBrand,
+.dropdownPrice {
+  position: absolute;
+  width: 224px;
+  height: 272px;
+  left: 0px;
+  top: 52px;
+
+  border: 1px solid rgba(18, 20, 23, 0.05);
+  border-radius: 14px;
+
+  box-shadow: 0px 4px 36px 0px rgba(0, 0, 0, 0.02);
+  background: rgb(255, 255, 255);
+  padding: 14px 18px;
+  overflow-y: scroll;
+}
+
+.dropdownPrice {
+  width: 125px;
+}
+
+.item {
+  color: rgba(18, 20, 23, 0.2);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  margin-bottom: 8px;
+}
+
+.item:last-child {
+  margin-bottom: 0px;
+}
