@@ -19,3 +19,5 @@ export const selectVisibleCars = createSelector(
 );
 
 export const selectFavoritesCars = (state) => state.cars.favorites;
+
+export const selectLoadMoreButton = (state) => state.cars.loadMoreButton;

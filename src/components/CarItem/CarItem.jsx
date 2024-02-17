@@ -4,9 +4,9 @@ import Modal from "../Modal/Modal";
 
 import { ReactComponent as IconEmptyLike } from "../../img/empty-heart.svg";
 import { ReactComponent as IconFillLike } from "../../img/fill-heart.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToFavorites, deleteFavorites } from "../../redux/carsSlice";
-import Favorites from "../../pages/Favorites";
+import { selectFavoritesCars } from "../../redux/selectors";
 
 const CarItem = ({ data, handleLoadMore }) => {
   const {
@@ -24,7 +24,7 @@ const CarItem = ({ data, handleLoadMore }) => {
   const adressArr = address.split(",");
 
   const [isOpenModal, setOpenModal] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
+  const favorites = useSelector(selectFavoritesCars);
 
   const dispatch = useDispatch();
 
@@ -40,19 +40,17 @@ const CarItem = ({ data, handleLoadMore }) => {
 
   const addToFavorite = () => {
     dispatch(addToFavorites(id));
-    setIsFavorite(true);
   };
 
   const deleteFavorite = () => {
     dispatch(deleteFavorites(id));
-    setIsFavorite(false);
   };
 
   return (
     <div className={css.card}>
       <div className={css.imageWrap}>
         <img className={css.image} src={img} alt={make} />
-        {!isFavorite ? (
+        {!favorites.includes(id) ? (
           <IconEmptyLike className={css.like} onClick={addToFavorite} />
         ) : (
           <IconFillLike className={css.like} onClick={deleteFavorite} />
@@ -70,7 +68,6 @@ const CarItem = ({ data, handleLoadMore }) => {
         {adressArr[2]}
         <span className={css.stroke}></span>
         {rentalCompany}
-        <span className={css.stroke}></span> Premium
       </p>
       <p className={css.subtitle}>
         {type}
@@ -86,8 +83,6 @@ const CarItem = ({ data, handleLoadMore }) => {
       </button>
 
       {isOpenModal && <Modal onClose={closeModal} key={id} data={data} />}
-
-      {!isFavorite && <Favorites key={id} handleLoadMore={handleLoadMore} />}
     </div>
   );
 };

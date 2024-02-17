@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import CarItem from "../CarItem/CarItem";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCars, selectIsLoading } from "../../redux/selectors";
+import {
+  selectCars,
+  selectIsLoading,
+  selectLoadMoreButton,
+} from "../../redux/selectors";
 import { fetchCarsThunk } from "../../redux/operations";
 import Loader from "../Loader/Loader";
 import css from "./CarList.module.css";
+import { setloadMoreButton } from "../../redux/carsSlice";
 
 const CarList = () => {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const [isLastPage, setIsLastPage] = useState(false);
+  const loadMoreButton = useSelector(selectLoadMoreButton);
 
   const cars = useSelector(selectCars);
   const isLoading = useSelector(selectIsLoading);
@@ -23,10 +28,10 @@ const CarList = () => {
   };
 
   useEffect(() => {
-    if (cars.length % 12 !== 0) {
-      setIsLastPage(true);
+    if (cars.length === 32) {
+      dispatch(setloadMoreButton(false));
     }
-  }, [cars]);
+  }, [cars, dispatch, loadMoreButton]);
 
   return (
     <div className={css.container}>
@@ -37,7 +42,7 @@ const CarList = () => {
       </div>
       {isLoading && <Loader />}
 
-      {!isLastPage && (
+      {loadMoreButton && (
         <button
           type="button"
           className={css.LoadMoreBtn}

@@ -55,7 +55,7 @@ const Filter = () => {
           </label>
           <div className={css.inputContainer}>
             <input
-              type="text"
+              type="number"
               placeholder="To $"
               id="price"
               className={css.inputPrice}
@@ -64,18 +64,20 @@ const Filter = () => {
             {isMenuPriceOpen && <MenuModalPrice />}
           </div>
         </div>
+
         <div className={css.labelwrap}>
           <label htmlFor="mileage" className={css.label}>
             Сar mileage / km
           </label>
           <div className={css.inputwrap}>
-            <input
-              type="text"
-              placeholder="From"
-              id="mileage"
-              className={css.inputFrom}
-            />
-            <input type="text" placeholder="To" className={css.inputTo} />
+            <div className={css.inputLabelWrap}>
+              <input type="number" id="mileage" className={css.inputFrom} />
+              <p className={css.upperLabel}>From</p>
+            </div>
+            <div className={css.inputLabelWrap}>
+              <input type="number" className={css.inputTo} />
+              <p className={css.upperLabel}>To</p>
+            </div>
           </div>
         </div>
         <button type="button" className={css.button}>

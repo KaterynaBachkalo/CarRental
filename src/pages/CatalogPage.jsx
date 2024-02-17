@@ -1,9 +1,9 @@
 import React from "react";
 import Filter from "../components/Filter/Filter";
 import CarList from "../components/CarLIst/CarList";
-import css from "./Catalog.module.css";
+import css from "./stylesPage.module.css";
 
-const Catalog = () => {
+const CatalogPage = () => {
   return (
     <div className={css.container}>
       <Filter />
@@ -12,4 +12,4 @@ const Catalog = () => {
   );
 };
 
-export default Catalog;
+export default CatalogPage;

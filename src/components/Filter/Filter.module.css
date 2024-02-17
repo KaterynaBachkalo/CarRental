@@ -78,14 +78,14 @@ input {
   border-radius: 14px 0px 0px 14px;
   background: rgb(247, 247, 251);
   width: 160px;
-  padding: 14px 24px;
+  padding: 14px 24px 14px 75px;
 }
 
 .inputTo {
   width: 160px;
   border-radius: 0px 14px 14px 0px;
   background: rgb(247, 247, 251);
-  padding: 14px 24px;
+  padding: 14px 24px 14px 53px;
 }
 
 input::placeholder {
@@ -103,4 +103,32 @@ input::placeholder {
   top: 50%;
   right: 14px;
   transform: translateY(-50%);
+}
+
+.upperLabel {
+  position: absolute;
+  top: 14px;
+  left: 24px;
+
+  color: rgb(18, 20, 23);
+
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.inputLabelWrap {
+  position: relative;
+}
+
+/* For WebKit browsers */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }

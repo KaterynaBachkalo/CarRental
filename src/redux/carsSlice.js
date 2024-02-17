@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCarsThunk } from "./operations";
+import { fetchAllCarsThunk, fetchCarsThunk } from "./operations";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -16,6 +16,7 @@ const INITIAL_STATE = {
   isLoading: false,
   error: null,
   favorites: [],
+  loadMoreButton: true,
 };
 
 const carsSlice = createSlice({
@@ -25,6 +26,7 @@ const carsSlice = createSlice({
   reducers: {
     addToFavorites: {
       reducer(state, action) {
+        // state.favorites = [...state.favorites, ...action.payload];
         state.favorites.push(action.payload);
       },
     },
@@ -35,6 +37,16 @@ const carsSlice = createSlice({
         );
       },
     },
+    clearState: {
+      reducer(state) {
+        state.items = [];
+      },
+    },
+    setloadMoreButton: {
+      reducer(state, action) {
+        state.loadMoreButton = action.payload;
+      },
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -43,10 +55,24 @@ const carsSlice = createSlice({
         state.items = [...state.items, ...action.payload];
         state.isLoading = false;
         state.error = null;
+        state.loadMoreButton = true;
       })
-      .addCase(fetchCarsThunk.rejected, handleRejected);
+      .addCase(fetchCarsThunk.rejected, handleRejected)
+
+      .addCase(fetchAllCarsThunk.pending, handlePending)
+      .addCase(fetchAllCarsThunk.fulfilled, (state, action) => {
+        state.items = action.payload;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(fetchAllCarsThunk.rejected, handleRejected);
   },
 });
 
-export const { addToFavorites, deleteFavorites } = carsSlice.actions;
+export const {
+  addToFavorites,
+  deleteFavorites,
+  clearState,
+  setloadMoreButton,
+} = carsSlice.actions;
 export const carsReducer = carsSlice.reducer;
