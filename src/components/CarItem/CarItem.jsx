@@ -4,28 +4,29 @@ import Modal from "../Modal/Modal";
 
 import { ReactComponent as IconEmptyLike } from "../../img/empty-heart.svg";
 import { ReactComponent as IconFillLike } from "../../img/fill-heart.svg";
+import { useDispatch } from "react-redux";
+import { addToFavorites, deleteFavorites } from "../../redux/carsSlice";
+import Favorites from "../../pages/Favorites";
 
-const CarItem = ({
-  img,
-  make,
-  model,
-  year,
-  rentalPrice,
-  address,
-  rentalCompany,
-  type,
-  functionalities,
-  id,
-  fuelConsumption,
-  engineSize,
-  description,
-  accessories,
-  rentalConditions,
-  mileage,
-}) => {
+const CarItem = ({ data, handleLoadMore }) => {
+  const {
+    img,
+    make,
+    model,
+    year,
+    rentalPrice,
+    address,
+    type,
+    functionalities,
+    id,
+    rentalCompany,
+  } = data;
   const adressArr = address.split(",");
 
   const [isOpenModal, setOpenModal] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const dispatch = useDispatch();
 
   const openModal = () => {
     setOpenModal(true);
@@ -37,12 +38,25 @@ const CarItem = ({
     document.body.classList.remove("body-scroll-lock");
   };
 
+  const addToFavorite = () => {
+    dispatch(addToFavorites(id));
+    setIsFavorite(true);
+  };
+
+  const deleteFavorite = () => {
+    dispatch(deleteFavorites(id));
+    setIsFavorite(false);
+  };
+
   return (
     <div className={css.card}>
       <div className={css.imageWrap}>
         <img className={css.image} src={img} alt={make} />
-        <IconEmptyLike className={css.like} />
-        <IconFillLike className={css.like} />
+        {!isFavorite ? (
+          <IconEmptyLike className={css.like} onClick={addToFavorite} />
+        ) : (
+          <IconFillLike className={css.like} onClick={deleteFavorite} />
+        )}
       </div>
       <h2 className={css.title}>
         <p>
@@ -56,7 +70,7 @@ const CarItem = ({
         {adressArr[2]}
         <span className={css.stroke}></span>
         {rentalCompany}
-        {/* <span className={css.stroke}></span> Premium */}
+        <span className={css.stroke}></span> Premium
       </p>
       <p className={css.subtitle}>
         {type}
@@ -71,28 +85,9 @@ const CarItem = ({
         Learn more
       </button>
 
-      {isOpenModal && (
-        <Modal
-          onClose={closeModal}
-          key={id}
-          img={img}
-          make={make}
-          model={model}
-          year={year}
-          rentalPrice={rentalPrice}
-          address={address}
-          rentalCompany={rentalCompany}
-          type={type}
-          id={id}
-          functionalities={functionalities}
-          fuelConsumption={fuelConsumption}
-          engineSize={engineSize}
-          description={description}
-          accessories={accessories}
-          rentalConditions={rentalConditions}
-          mileage={mileage}
-        />
-      )}
+      {isOpenModal && <Modal onClose={closeModal} key={id} data={data} />}
+
+      {!isFavorite && <Favorites key={id} handleLoadMore={handleLoadMore} />}
     </div>
   );
 };

@@ -1,62 +1,51 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CarItem from "../CarItem/CarItem";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCars } from "../../redux/selectors";
+import { selectCars, selectIsLoading } from "../../redux/selectors";
 import { fetchCarsThunk } from "../../redux/operations";
+import Loader from "../Loader/Loader";
 import css from "./CarList.module.css";
 
 const CarList = () => {
   const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isLastPage, setIsLastPage] = useState(false);
+
   const cars = useSelector(selectCars);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
-    dispatch(fetchCarsThunk());
-  }, [dispatch]);
+    dispatch(fetchCarsThunk(currentPage));
+  }, [currentPage, dispatch]);
+
+  const handleLoadMore = () => {
+    setCurrentPage((prevPage) => (prevPage += 1));
+  };
+
+  useEffect(() => {
+    if (cars.length % 12 !== 0) {
+      setIsLastPage(true);
+    }
+  }, [cars]);
 
   return (
     <div className={css.container}>
       <div className={css.wrap}>
-        {cars?.map(
-          ({
-            img,
-            make,
-            model,
-            year,
-            rentalPrice,
-            address,
-            rentalCompany,
-            type,
-            functionalities,
-            id,
-            fuelConsumption,
-            engineSize,
-            description,
-            accessories,
-            rentalConditions,
-            mileage,
-          }) => (
-            <CarItem
-              key={id}
-              img={img}
-              make={make}
-              model={model}
-              year={year}
-              rentalPrice={rentalPrice}
-              address={address}
-              rentalCompany={rentalCompany}
-              type={type}
-              id={id}
-              functionalities={functionalities}
-              fuelConsumption={fuelConsumption}
-              engineSize={engineSize}
-              description={description}
-              accessories={accessories}
-              rentalConditions={rentalConditions}
-              mileage={mileage}
-            />
-          )
-        )}
+        {cars?.map((car) => (
+          <CarItem key={car.id} data={car} handleLoadMore={handleLoadMore} />
+        ))}
       </div>
+      {isLoading && <Loader />}
+
+      {!isLastPage && (
+        <button
+          type="button"
+          className={css.LoadMoreBtn}
+          onClick={handleLoadMore}
+        >
+          Load more
+        </button>
+      )}
     </div>
   );
 };

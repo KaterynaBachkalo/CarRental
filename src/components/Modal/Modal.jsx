@@ -5,25 +5,26 @@ import { createPortal } from "react-dom";
 
 const modalRoot = document.querySelector("#root-modal");
 
-const Modal = ({
-  onClose,
-  img,
-  make,
-  model,
-  year,
-  rentalPrice,
-  address,
-  type,
-  functionalities,
-  id,
-  fuelConsumption,
-  engineSize,
-  description,
-  accessories,
-  rentalConditions,
-  mileage,
-}) => {
+const Modal = ({ onClose, data }) => {
   const modalRef = useRef(null);
+
+  const {
+    img,
+    make,
+    model,
+    year,
+    rentalPrice,
+    address,
+    type,
+    functionalities,
+    id,
+    fuelConsumption,
+    engineSize,
+    description,
+    accessories,
+    rentalConditions,
+    mileage,
+  } = data;
 
   const adressArr = address.split(",");
 
