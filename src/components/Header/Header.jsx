@@ -22,9 +22,6 @@ const Header = () => {
               >
                 Home
               </Link>
-              {/* <NavLink to="/" className={css.mainLink}>
-                Home
-              </NavLink> */}
             </li>
             <li>
               <Link
@@ -35,9 +32,6 @@ const Header = () => {
               >
                 Catalog
               </Link>
-              {/* <NavLink to="/catalog" className={css.catalogLink}>
-                Catalog
-              </NavLink> */}
             </li>
             <li>
               <Link
@@ -48,9 +42,6 @@ const Header = () => {
               >
                 Favorites
               </Link>
-              {/* <NavLink to="/favorites" className={css.favoritesLink}>
-                Favorites
-              </NavLink> */}
             </li>
           </ul>
           <a className={css.tel} href="tel:+380730000000">
