@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import css from "./Favorites.module.css";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectCars,
@@ -31,12 +32,17 @@ const Favorites = () => {
 
   return (
     <div className={css.container}>
-      <div className={css.wrap}>
-        {favorites.length !== 0 &&
-          cars
+      {favorites.length !== 0 ? (
+        <div className={css.wrap}>
+          {cars
             ?.filter((car) => favorites.includes(car.id))
-            .map((car) => <CarItem key={car.id} data={car} />)}
-      </div>
+            .map((car) => (
+              <CarItem key={car.id} data={car} />
+            ))}
+        </div>
+      ) : (
+        <p className={css.emptyFavorites}>Your favorite cars may be here!</p>
+      )}
       {isLoading && <Loader />}
     </div>
   );

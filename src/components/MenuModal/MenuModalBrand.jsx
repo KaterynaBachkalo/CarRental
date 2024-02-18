@@ -1,16 +1,23 @@
 import React from "react";
 import css from "./MenuModal.module.css";
 import makes from "../../data/makes.json";
-import { nanoid } from "nanoid";
 
-const MenuModalBrand = () => {
+const MenuModalBrand = ({ onSelect }) => {
+  const handleItemClick = (selectedBrand) => {
+    onSelect(selectedBrand);
+  };
+
   return (
     <div className={css.dropdownBrand}>
       <ul>
         {makes &&
           makes.map((make) => (
-            <li className={css.item} key={nanoid()}>
-              <a href="/">{make}</a>
+            <li
+              className={css.item}
+              key={make}
+              onClick={() => handleItemClick(make)}
+            >
+              {make}
             </li>
           ))}
       </ul>
