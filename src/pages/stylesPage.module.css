@@ -1,4 +1,5 @@
 .container {
   padding: 120px 15px;
   width: 1214px;
+  z-index: -10;
 }
