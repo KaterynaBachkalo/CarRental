@@ -50,16 +50,6 @@ const CarList = () => {
     car.make.toLowerCase().includes(make.toLowerCase())
   );
 
-  // if (filteredCars.length === 0 && (make || mileage || filter.rentalPrice)) {
-  //   toast.error(
-  //     "A car with these parameters was not found, change the request data"
-  //   );
-  // }
-
-  // if (cars && cars.length === 0) {
-  //   return toast.error("Something went wrong, please try later");
-  // }
-
   return (
     <div className={css.container}>
       <div className={css.wrap}>

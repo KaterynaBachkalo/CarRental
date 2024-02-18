@@ -45,7 +45,7 @@ const Header = () => {
             </li>
           </ul>
           <a className={css.tel} href="tel:+380730000000">
-            +380730000000
+            Call: +380730000000
           </a>
         </nav>
       </div>
