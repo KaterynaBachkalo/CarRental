@@ -51,3 +51,11 @@ dropdown із марками автомобіля makes.json - показати 
 - Проєкт задеплоїний на github pages або netlify.com.
 
 ![Main page screenshot](./src/img/first_page.png)
+
+## Технології, які використовувались
+
+**Front-end**<br />
+`React` `ReduxToolkit` `ReduxPersist` `Axios` `HTML/CSS`
+
+**Back-end**<br />
+`UI-сервіс https://mockapi.io/`
