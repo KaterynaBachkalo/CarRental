@@ -27,48 +27,7 @@ const CarList = () => {
   const filter = useSelector(selectFilter);
 
   const { make, mileage, rentalPrice } = filter;
-  console.log(filter);
 
-  const applyFilter = (car) => {
-    // Перевірка, чи об'єкт car відповідає умовам фільтра
-
-    const makeCondition = car.make.toLowerCase().includes(make.toLowerCase());
-
-    const mileageCondition = car.mileage <= mileage;
-
-    const rentalPriceCondition = car.rentalPrice <= rentalPrice;
-
-    // if (make === "" && mileage && rentalPrice !== "$") {
-    //   return mileageCondition && rentalPriceCondition;
-    // }
-
-    // if (!mileage && make !== "" && rentalPrice !== "$") {
-    //   console.log(1);
-    //   return makeCondition && rentalPriceCondition;
-    // }
-
-    // if (!mileage && make !== "" && rentalPrice !== "$") {
-    //   return makeCondition && rentalPriceCondition;
-    // }
-    if (make !== "") {
-      return makeCondition;
-    }
-
-    if (mileage !== "0") {
-      return mileageCondition;
-    }
-
-    if (rentalPrice !== "$") {
-      return rentalPriceCondition;
-    }
-  };
-
-  const filteredCars = cars.filter(applyFilter);
-  console.log(filteredCars);
-
-  if (filteredCars.length === 0 && make !== "") {
-    toast.warning("Click link Load More");
-  }
   // if (filteredCars.length === 0 && (make || mileage || filter.rentalPrice)) {
   //   toast.error(
   //     "A car with these parameters was not found, change the request data"
@@ -76,8 +35,14 @@ const CarList = () => {
   // }
 
   useEffect(() => {
-    dispatch(fetchCarsThunk(currentPage));
-  }, [currentPage, dispatch]);
+    const queryParams = { page: currentPage, limit: 12 };
+
+    if (make !== "") {
+      queryParams.make = make;
+    }
+
+    dispatch(fetchCarsThunk(queryParams));
+  }, [currentPage, dispatch, make]);
 
   const handleLoadMore = () => {
     setCurrentPage((prevPage) => (prevPage += 1));
@@ -88,6 +53,10 @@ const CarList = () => {
       dispatch(setloadMoreButton(false));
     }
   }, [cars, dispatch, loadMoreButton]);
+
+  const filteredCars = cars.filter((car) =>
+    car.make.toLowerCase().includes(make.toLowerCase())
+  );
 
   return (
     <div className={css.container}>

@@ -6,6 +6,7 @@ import MenuModalPrice from "../MenuModal/MenuModalPrice";
 import { useDispatch, useSelector } from "react-redux";
 import { resetFilter, setFilter } from "../../redux/filterSlice";
 import { selectFilter } from "../../redux/selectors";
+import { clearState } from "../../redux/carsSlice";
 
 const Filter = () => {
   const [isMenuBrandOpen, setMenuBrandOpen] = useState(false);
@@ -30,6 +31,9 @@ const Filter = () => {
     if (make === "" && rentalPrice === "" && mileageRange.includes("")) {
       return;
     }
+
+    dispatch(clearState());
+
     dispatch(
       setFilter({
         make,
@@ -45,9 +49,10 @@ const Filter = () => {
 
     if (
       filter.make !== "" ||
-      !mileageRange.includes("") ||
+      !filter.mileage.includes("") ||
       filter.rentalPrice !== ""
     ) {
+      dispatch(clearState());
       dispatch(resetFilter());
     }
   };
