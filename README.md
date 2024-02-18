@@ -55,7 +55,7 @@ dropdown із марками автомобіля makes.json - показати 
 ## Технології, які використовувались
 
 **Front-end**<br />
-`React` `ReduxToolkit` `ReduxPersist` `Axios` `HTML/CSS`
+`React` `ReduxToolkit` `ReduxPersist` `Axios` `nanoid` `HTML/CSS` `react-loader-spinner` `react-toastify`
 
 **Back-end**<br />
 `UI-сервіс https://mockapi.io/`

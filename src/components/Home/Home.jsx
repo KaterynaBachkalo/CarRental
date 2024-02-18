@@ -1,25 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import css from "./Home.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { selectCars } from "../../redux/selectors";
-import { fetchAllCarsThunk } from "../../redux/operations";
+
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const cars = useSelector(selectCars);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchAllCarsThunk());
-  }, [dispatch]);
-
   return (
     <div>
-      {cars.length > 0 && (
-        <div className={css.imageWrap}>
-          <img src={cars[1].img} alt="car" className={css.image} />
-        </div>
-      )}
+      <div className={css.imageWrap}>
+        <img
+          src="https://ftp.goit.study/img/cars-test-task/volvo_xc90.jpeg"
+          alt="car"
+          className={css.image}
+        />
+      </div>
 
       <h1 className={css.mainTitle}>Car rental in Kyiv</h1>
       <p className={css.text}>
