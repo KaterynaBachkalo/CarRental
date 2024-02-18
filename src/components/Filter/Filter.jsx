@@ -30,7 +30,6 @@ const Filter = () => {
     if (make === "" && rentalPrice === "" && mileageRange.includes("")) {
       return;
     }
-    dispatch(clearState());
 
     dispatch(
       setFilter({

@@ -32,13 +32,9 @@ const CarList = () => {
 
     if (make !== "") {
       queryParams.make = make;
-    }
-
-    dispatch(fetchCarsThunk(queryParams));
-
-    return () => {
       dispatch(clearState());
-    };
+    }
+    dispatch(fetchCarsThunk(queryParams));
   }, [currentPage, dispatch, make]);
 
   const handleLoadMore = () => {
