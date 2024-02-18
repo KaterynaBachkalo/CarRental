@@ -66,12 +66,15 @@
   border: none;
   margin-top: 24px;
   padding: 12px 99.5px;
+
   color: var(--primary-color-white);
-  font-family: "Manrope";
+  background-color: var(--primary-color-blue);
+
+  /* font-family: "Manrope"; */
   font-size: 14px;
   line-height: 20px;
   font-weight: 600;
-  background-color: var(--primary-color-blue);
+
   border-radius: 12px;
   text-decoration: none;
   text-align: center;
