@@ -11,7 +11,7 @@ import { fetchCarsThunk } from "../../redux/operations";
 import Loader from "../Loader/Loader";
 import css from "./CarList.module.css";
 import { setloadMoreButton } from "../../redux/carsSlice";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 const CarList = () => {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const CarList = () => {
 
   const filter = useSelector(selectFilter);
 
-  const { make, mileage, rentalPrice } = filter;
+  const { make } = filter;
 
   // if (filteredCars.length === 0 && (make || mileage || filter.rentalPrice)) {
   //   toast.error(

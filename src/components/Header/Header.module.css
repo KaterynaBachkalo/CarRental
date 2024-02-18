@@ -3,7 +3,7 @@
   width: 1214px;
   padding: 0 15px;
   position: fixed;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: var(--backdrop-color-black);
   margin: 0 auto;
   z-index: 100;
 }
@@ -35,7 +35,7 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
-  color: rgb(52, 112, 255);
+  color: var(--primary-color-blue);
   border-radius: 12px;
   background-color: transparent;
   padding: 12px 50px;
@@ -46,15 +46,15 @@
 .catalogLink:hover,
 .favoritesLink:hover,
 .tel:hover {
-  color: rgb(255, 255, 255);
-  background-color: rgb(11, 68, 205);
+  color: var(--primary-color-white);
+  background-color: --secondary-color-blue;
   border-radius: 12px;
   padding: 12px 50px;
 }
 
 .active {
-  color: rgb(255, 255, 255);
-  background-color: rgb(52, 112, 255);
+  color: var(--primary-color-white);
+  background-color: var(--primary-color-blue);
   border-radius: 12px;
   padding: 12px 50px;
 }

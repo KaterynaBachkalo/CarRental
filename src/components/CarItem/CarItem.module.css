@@ -1,6 +1,5 @@
 .card {
   width: 274px;
-  /* height: 426px; */
   margin: 0;
 }
 
@@ -36,17 +35,17 @@
 }
 
 .titleModel {
-  color: rgb(52, 112, 255);
+  color: var(--primary-color-blue);
 }
 
 .subtitle {
   display: flex;
   align-items: center;
+  margin: 0 0 4px;
 
-  color: rgba(18, 20, 23, 0.5);
+  color: var(--secondary-color-black);
   font-size: 12px;
   line-height: 18px;
-  margin: 0 0 4px;
 
   white-space: nowrap;
   overflow: hidden;
@@ -57,9 +56,9 @@
   content: "";
   display: inline-block;
   height: 16px;
-  width: 1px; /* Ширина вашої вертикальної лінії */
-  background-color: rgba(18, 20, 23, 0.1); /* Колір лінії */
-  margin: 0 6px; /* Відстань між словами і лінією */
+  width: 1px;
+  margin: 0 6px;
+  background-color: var(--secondary-color-black);
 }
 
 .button {
@@ -67,12 +66,12 @@
   border: none;
   margin-top: 24px;
   padding: 12px 99.5px;
-  color: #ffffff;
-  font-family: Manrope;
+  color: var(--primary-color-white);
+  font-family: "Manrope";
   font-size: 14px;
   line-height: 20px;
   font-weight: 600;
-  background-color: rgb(52, 112, 255);
+  background-color: var(--primary-color-blue);
   border-radius: 12px;
   text-decoration: none;
   text-align: center;
@@ -81,7 +80,7 @@
 }
 
 .button:hover {
-  background-color: rgb(11, 68, 205);
+  background-color: var(--secondary-color-blue);
 }
 
 .like {
