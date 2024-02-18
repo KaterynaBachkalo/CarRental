@@ -12,7 +12,7 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 
   if (state.error === "Request failed with status code 404") {
-    toast.error("A car with these parameters was not found", {
+    toast.warning("A car with these parameters was not found", {
       position: "top-center",
       autoClose: 2000,
       hideProgressBar: false,

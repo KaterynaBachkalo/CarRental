@@ -33,6 +33,7 @@ const CarList = () => {
     if (make !== "") {
       queryParams.make = make;
     }
+
     dispatch(fetchCarsThunk(queryParams));
   }, [currentPage, dispatch, make]);
 
@@ -40,21 +41,21 @@ const CarList = () => {
     setCurrentPage((prevPage) => (prevPage += 1));
   };
 
-  useEffect(() => {
-    if (cars.length === 32) {
-      dispatch(setloadMoreButton(false));
-    }
-  }, [cars, dispatch, loadMoreButton]);
-
-  const filteredCars = cars.filter((car) =>
+  const filteredCarsMake = cars.filter((car) =>
     car.make.toLowerCase().includes(make.toLowerCase())
   );
 
+  useEffect(() => {
+    if (cars.length === 32 || make !== "") {
+      dispatch(setloadMoreButton(false));
+    }
+  }, [cars, dispatch, loadMoreButton, make]);
+
   return (
-    <div className={css.container}>
+    <div>
       <div className={css.wrap}>
-        {filteredCars.length !== 0 && cars
-          ? filteredCars?.map((car) => (
+        {filteredCarsMake.length !== 0 && cars
+          ? filteredCarsMake?.map((car) => (
               <CarItem
                 key={car.id}
                 data={car}
@@ -69,9 +70,10 @@ const CarList = () => {
               />
             ))}
       </div>
+
       {isLoading && <Loader />}
 
-      {loadMoreButton && (
+      {!isLoading && loadMoreButton && (
         <button
           type="button"
           className={css.LoadMoreBtn}

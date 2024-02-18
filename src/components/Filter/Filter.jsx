@@ -9,6 +9,7 @@ import { selectFilter } from "../../redux/selectors";
 import { clearState } from "../../redux/carsSlice";
 
 const Filter = () => {
+  const dispatch = useDispatch();
   const [isMenuBrandOpen, setMenuBrandOpen] = useState(false);
   const [isMenuPriceOpen, setMenuPriceOpen] = useState(false);
 
@@ -24,8 +25,6 @@ const Filter = () => {
     setMileageRange(["", ""]);
   };
 
-  const dispatch = useDispatch();
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (make === "" && rentalPrice === "" && mileageRange.includes("")) {
@@ -37,7 +36,7 @@ const Filter = () => {
     dispatch(
       setFilter({
         make,
-        rentalPrice: `$${rentalPrice}`,
+        rentalPrice: `${rentalPrice}`,
         mileage: mileageRange,
       })
     );

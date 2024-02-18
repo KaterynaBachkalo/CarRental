@@ -31,7 +31,7 @@ const Favorites = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={css.container}>
       {favorites.length !== 0 ? (
         <div className={css.wrap}>
           {cars
@@ -43,7 +43,7 @@ const Favorites = () => {
       ) : (
         <p className={css.emptyFavorites}>Your favorite cars may be here!</p>
       )}
-      {isLoading && <Loader />}
+      {isLoading && !cars && <Loader />}
     </div>
   );
 };
