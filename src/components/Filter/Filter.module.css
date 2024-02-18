@@ -1,8 +1,8 @@
 .form {
   display: flex;
+  align-items: flex-end;
   gap: 18px;
   width: 859px;
-  align-items: flex-end;
   margin: 0 auto;
   margin-bottom: 50px;
 }
@@ -10,8 +10,8 @@
 .label {
   font-size: 14px;
   font-weight: 500;
-  line-height: 18px;
-  color: rgb(138, 138, 137);
+  line-height: 1.29;
+  color: var(--primary-color-grey);
   margin-bottom: 8px;
 }
 
@@ -25,24 +25,19 @@
 }
 
 .button {
-  cursor: pointer;
-  display: block;
   height: 48px;
   padding: 14px 44px;
   border-radius: 12px;
-  border: none;
 
-  background: rgb(52, 112, 255);
-  color: rgb(255, 255, 255);
+  background: var(--primary-color-blue);
+  color: var(--primary-color-white);
 
   font-size: 14px;
   font-weight: 600;
-  line-height: 20px;
-  transition: background-color 0.3s;
 }
 
 .button:hover {
-  background-color: rgb(11, 68, 205);
+  background-color: var(--secondary-color-blue);
 }
 
 .inputContainer {
@@ -50,15 +45,15 @@
 }
 
 input {
-  color: rgb(18, 20, 23);
+  color: var(--primary-color-black);
   font-size: 18px;
   font-weight: 500;
-  line-height: 20px;
+  line-height: 1.11;
 
   height: 48px;
   border: none;
   outline: none;
-  background: rgb(247, 247, 251);
+  background: var(--secondary-color-grey);
 }
 
 .inputBrand {
@@ -76,7 +71,7 @@ input {
 .inputFrom {
   border-right: 1px solid rgba(138, 138, 137, 0.2);
   border-radius: 14px 0px 0px 14px;
-  background: rgb(247, 247, 251);
+  background: var(--secondary-color-grey);
   width: 160px;
   padding: 14px 24px 14px 75px;
 }
@@ -89,16 +84,16 @@ input {
 }
 
 input::placeholder {
-  color: rgb(18, 20, 23);
+  color: var(--primary-color-black);
 
   font-size: 18px;
   font-weight: 500;
-  line-height: 20px;
+  line-height: 1.11;
 }
 
 .icon {
   cursor: pointer;
-  stroke: rgb(18, 20, 23);
+  stroke: var(--primary-color-black);
   position: absolute;
   top: 50%;
   right: 14px;
@@ -110,11 +105,11 @@ input::placeholder {
   top: 14px;
   left: 24px;
 
-  color: rgb(18, 20, 23);
+  color: var(--primary-color-black);
 
   font-size: 18px;
   font-weight: 500;
-  line-height: 20px;
+  line-height: 1.11;
 }
 
 .inputLabelWrap {

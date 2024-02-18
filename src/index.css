@@ -2,13 +2,13 @@
 
 :root {
   --primary-color-white: rgb(255, 255, 255);
-  /* --primary-color-black: #2f2f2f; */
+  --primary-color-black: rgb(18, 20, 23);
   --primary-color-blue: rgb(52, 112, 255);
+  --primary-color-grey: rgb(138, 138, 137);
+
   --secondary-color-blue: rgb(11, 68, 205);
   --secondary-color-black: rgba(18, 20, 23, 0.5);
-  /* --secondary-color-blue-1: #ecf2ff; */
-  /* --secondary-color-blue-2: #d7e3ff; */
-  /* --secondary-color-blue-3: #9ebbff;  */
+  --secondary-color-grey: rgb(247, 247, 251);
 
   --backdrop-color-black: rgba(255, 255, 255, 0.9);
 }
@@ -23,6 +23,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-style: normal;
+  line-height: 1.5;
 }
 
 h1,
@@ -63,4 +64,7 @@ a {
 button {
   font-family: "Manrope";
   display: block;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }

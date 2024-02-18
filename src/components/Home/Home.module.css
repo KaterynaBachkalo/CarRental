@@ -1,6 +1,6 @@
 .mainTitle {
   text-align: center;
-  color: rgb(52, 112, 255);
+  color: var(--primary-color-blue);
 
   font-size: 30px;
   line-height: 1.2;
@@ -10,7 +10,7 @@
 
 .title {
   text-align: center;
-  color: rgb(52, 112, 255);
+  color: var(--primary-color-blue);
 
   font-size: 24px;
   line-height: 1.2;
@@ -19,7 +19,7 @@
 }
 
 .text {
-  color: rgb(18, 20, 23);
+  color: var(--primary-color-black);
 
   font-size: 20px;
   line-height: 1.2;
@@ -40,25 +40,27 @@
 }
 
 .bluetext {
-  color: rgb(52, 112, 255);
+  color: var(--primary-color-blue);
   font-weight: 600;
 }
 
 .chooseLink {
+  display: block;
   font-size: 20px;
   line-height: 1.2;
+
   margin: 0 auto;
   margin-top: 48px;
-  display: block;
   text-align: center;
   width: 400px;
-  color: rgb(255, 255, 255);
-  background-color: rgb(52, 112, 255);
   padding: 12px 99px 12px 99px;
+
+  color: var(--primary-color-white);
+  background-color: var(--primary-color-blue);
   border-radius: 12px;
   transition: background-color 0.3s;
 }
 
 .chooseLink:hover {
-  background-color: rgb(11, 68, 205);
+  background-color: var(--secondary-color-blue);
 }

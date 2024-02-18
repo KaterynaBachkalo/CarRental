@@ -4,25 +4,10 @@
   flex-wrap: wrap;
 }
 
-.LoadMoreBtn {
-  display: block;
-  color: rgb(52, 112, 255);
-  background-color: transparent;
-  border: none;
-  margin: 0 auto;
-  margin-top: 100px;
-
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  text-decoration-line: underline;
-  cursor: pointer;
-}
-
 .emptyFavorites {
   font-size: 24px;
   font-weight: 500;
-  line-height: 24px;
 
   text-align: center;
+  color: var(--primary-color-black);
 }

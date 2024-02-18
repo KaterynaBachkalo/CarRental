@@ -11,7 +11,6 @@ import { fetchCarsThunk } from "../../redux/operations";
 import Loader from "../Loader/Loader";
 import css from "./CarList.module.css";
 import { setloadMoreButton } from "../../redux/carsSlice";
-// import { toast } from "react-toastify";
 
 const CarList = () => {
   const dispatch = useDispatch();
@@ -27,12 +26,6 @@ const CarList = () => {
   const filter = useSelector(selectFilter);
 
   const { make } = filter;
-
-  // if (filteredCars.length === 0 && (make || mileage || filter.rentalPrice)) {
-  //   toast.error(
-  //     "A car with these parameters was not found, change the request data"
-  //   );
-  // }
 
   useEffect(() => {
     const queryParams = { page: currentPage, limit: 12 };
@@ -57,6 +50,16 @@ const CarList = () => {
   const filteredCars = cars.filter((car) =>
     car.make.toLowerCase().includes(make.toLowerCase())
   );
+
+  // if (filteredCars.length === 0 && (make || mileage || filter.rentalPrice)) {
+  //   toast.error(
+  //     "A car with these parameters was not found, change the request data"
+  //   );
+  // }
+
+  // if (cars && cars.length === 0) {
+  //   return toast.error("Something went wrong, please try later");
+  // }
 
   return (
     <div className={css.container}>

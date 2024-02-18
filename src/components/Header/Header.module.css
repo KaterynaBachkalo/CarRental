@@ -1,10 +1,10 @@
 .container {
+  position: fixed;
   height: 80px;
   width: 1214px;
   padding: 0 15px;
-  position: fixed;
-  background-color: var(--backdrop-color-black);
   margin: 0 auto;
+  background-color: var(--backdrop-color-black);
   z-index: 100;
 }
 
@@ -34,10 +34,11 @@
 .tel {
   font-size: 16px;
   font-weight: 500;
-  line-height: 24px;
+
   color: var(--primary-color-blue);
-  border-radius: 12px;
   background-color: transparent;
+
+  border-radius: 12px;
   padding: 12px 50px;
   transition: background-color 0.3s;
 }
@@ -53,7 +54,7 @@
 }
 
 .active {
-  color: var();
+  color: var(--primary-color-white);
   background-color: var(--primary-color-blue);
   border-radius: 12px;
   padding: 12px 50px;

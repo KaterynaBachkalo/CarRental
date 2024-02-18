@@ -5,17 +5,18 @@
   right: 0;
   bottom: 0;
   overflow: auto;
-  background-color: rgba(18, 20, 23, 0.5);
+
+  background-color: var(--secondary-color-black);
 }
 
 .container {
-  max-width: 541px;
-
+  position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  position: absolute;
+
   max-height: calc(100vh - 20px);
+  max-width: 541px;
 }
 
 .modal {
@@ -23,7 +24,7 @@
   padding: 40px;
   border-radius: 24px;
 
-  background: rgb(255, 255, 255);
+  background: var(--primary-color-white);
 }
 
 .button {
@@ -31,26 +32,28 @@
   width: 168px;
   border-radius: 12px;
 
-  background: rgb(52, 112, 255);
-  color: rgb(255, 255, 255);
+  background: var(--primary-color-blue);
+  color: var(--primary-color-white);
 
   font-size: 14px;
   font-weight: 600;
-  line-height: 20px;
+  line-height: 1.42;
   padding: 12px 50px 12px 50px;
   transition: background-color 0.3s;
+  cursor: pointer;
 }
 
 .button:hover {
-  background-color: rgb(11, 68, 205);
+  background-color: var(--secondary-color-blue);
 }
 
 .btnClose {
-  border: none;
-  background-color: transparent;
   position: absolute;
   top: 16px;
   right: 16px;
+
+  border: none;
+  background-color: transparent;
   cursor: pointer;
 }
 
@@ -63,22 +66,21 @@
 .title {
   font-size: 18px;
   font-weight: 500;
-  line-height: 24px;
-  color: rgb(18, 20, 23);
+  line-height: 1.33;
   margin-bottom: 8px;
+  color: var(--primary-color-black);
 }
 
 .titleModel {
-  color: rgb(52, 112, 255);
+  color: var(--primary-color-blue);
 }
 
 .subtitle {
   display: flex;
   align-items: center;
 
-  color: rgba(18, 20, 23, 0.5);
+  color: var(--secondary-color-black);
   font-size: 12px;
-  line-height: 18px;
   margin: 0 0 4px;
 }
 
@@ -86,24 +88,25 @@
   content: "";
   display: inline-block;
   height: 16px;
-  width: 1px; /* Ширина вашої вертикальної лінії */
-  background-color: rgba(18, 20, 23, 0.1); /* Колір лінії */
-  margin: 0 6px; /* Відстань між словами і лінією */
+  width: 1px;
+  background-color: rgba(18, 20, 23, 0.1);
+  margin: 0 6px;
 }
 
 .description {
-  color: rgb(18, 20, 23);
+  color: var(--primary-color-black);
 
   font-size: 14px;
-  line-height: 20px;
+  line-height: 1.42;
   margin-bottom: 24px;
 }
 
 .titleDesc {
-  color: rgb(18, 20, 23);
+  color: var(--primary-color-black);
+
   font-size: 14px;
   font-weight: 500;
-  line-height: 20px;
+  line-height: 1.42;
   margin-bottom: 8px;
 }
 
@@ -120,24 +123,24 @@
 .text {
   font-size: 12px;
   font-weight: 600;
-  line-height: 18px;
   letter-spacing: -2%;
+
   color: rgb(54, 53, 53);
 }
 
 .number {
-  color: rgb(52, 112, 255);
+  color: var(--primary-color-blue);
 }
 
 .conditionBtn {
   display: block;
   border-radius: 35px;
   padding: 7px 14px;
-  background: rgb(249, 249, 249);
+
+  background: var(--primary-color-white);
+  color: rgb(54, 53, 53);
 
   font-size: 12px;
   font-weight: 600;
-  line-height: 18px;
   letter-spacing: -2%;
-  color: rgb(54, 53, 53);
 }

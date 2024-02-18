@@ -2,6 +2,7 @@
   "name": "car-rental",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/KaterynaBachkalo/car-rental",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.0",
     "@testing-library/jest-dom": "^5.17.0",

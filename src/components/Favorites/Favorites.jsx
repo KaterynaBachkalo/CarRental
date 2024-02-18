@@ -31,7 +31,7 @@ const Favorites = () => {
   }, [dispatch]);
 
   return (
-    <div className={css.container}>
+    <div>
       {favorites.length !== 0 ? (
         <div className={css.wrap}>
           {cars

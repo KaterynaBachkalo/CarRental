@@ -26,7 +26,6 @@ const carsSlice = createSlice({
   reducers: {
     addToFavorites: {
       reducer(state, action) {
-        // state.favorites = [...state.favorites, ...action.payload];
         state.favorites.push(action.payload);
       },
     },
