@@ -10,7 +10,7 @@ import {
 import { fetchCarsThunk } from "../../redux/operations";
 import Loader from "../Loader/Loader";
 import css from "./CarList.module.css";
-import { setloadMoreButton } from "../../redux/carsSlice";
+import { clearState, setloadMoreButton } from "../../redux/carsSlice";
 
 const CarList = () => {
   const dispatch = useDispatch();
@@ -35,6 +35,10 @@ const CarList = () => {
     }
 
     dispatch(fetchCarsThunk(queryParams));
+
+    return () => {
+      dispatch(clearState());
+    };
   }, [currentPage, dispatch, make]);
 
   const handleLoadMore = () => {

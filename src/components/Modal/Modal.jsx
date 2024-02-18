@@ -119,6 +119,7 @@ const Modal = ({ onClose, data }) => {
 
             <div className={css.descriptionWrap}>
               <h3 className={css.titleDesc}>Rental Conditions: </h3>
+
               <div className={css.conditionWrap}>
                 <div className={css.conditionBtn}>
                   <p className={css.text}>
@@ -130,10 +131,10 @@ const Modal = ({ onClose, data }) => {
 
               <div className={css.conditionWrap}>
                 <p className={css.conditionBtn}>{condition[2]}</p>
-                <p className={css.conditionBtn}>
+                <p className={css.conditionBtnText}>
                   Mileage: <span className={css.number}>{miles}</span>
                 </p>
-                <p className={css.conditionBtn}>
+                <p className={css.conditionBtnText}>
                   Price: <span className={css.number}>{rentalPrice}</span>
                 </p>
               </div>

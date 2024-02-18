@@ -1,5 +1,6 @@
 import React from "react";
 import css from "./Home.module.css";
+import img from "../../img/volvo_xc90.jpeg";
 
 import { Link } from "react-router-dom";
 
@@ -7,11 +8,7 @@ const Home = () => {
   return (
     <div>
       <div className={css.imageWrap}>
-        <img
-          src="https://ftp.goit.study/img/cars-test-task/volvo_xc90.jpeg"
-          alt="car"
-          className={css.image}
-        />
+        <img src={img} alt="car" className={css.image} />
       </div>
 
       <h1 className={css.mainTitle}>Car rental in Kyiv</h1>
