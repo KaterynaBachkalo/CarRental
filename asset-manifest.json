@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/KaterynaBachkalo/car-rental/static/css/main.d500f278.css",
+    "main.js": "/KaterynaBachkalo/car-rental/static/js/main.83fdd374.js",
+    "static/css/80.edd77a1e.chunk.css": "/KaterynaBachkalo/car-rental/static/css/80.edd77a1e.chunk.css",
+    "static/js/80.62cfbe64.chunk.js": "/KaterynaBachkalo/car-rental/static/js/80.62cfbe64.chunk.js",
+    "static/css/608.05512a70.chunk.css": "/KaterynaBachkalo/car-rental/static/css/608.05512a70.chunk.css",
+    "static/js/608.5805826e.chunk.js": "/KaterynaBachkalo/car-rental/static/js/608.5805826e.chunk.js",
+    "static/css/996.9556ba91.chunk.css": "/KaterynaBachkalo/car-rental/static/css/996.9556ba91.chunk.css",
+    "static/js/996.6fd575c2.chunk.js": "/KaterynaBachkalo/car-rental/static/js/996.6fd575c2.chunk.js",
+    "static/media/logo.png": "/KaterynaBachkalo/car-rental/static/media/logo.40272d94784aa4452c8b.png",
+    "index.html": "/KaterynaBachkalo/car-rental/index.html",
+    "static/media/empty-heart.svg": "/KaterynaBachkalo/car-rental/static/media/empty-heart.282d936f414f4c6884ab9306a91dad67.svg",
+    "static/media/fill-heart.svg": "/KaterynaBachkalo/car-rental/static/media/fill-heart.97847e9195943f61800c97807e735d4f.svg",
+    "static/media/close.svg": "/KaterynaBachkalo/car-rental/static/media/close.a21c62be02aca9ad171b3de10c0452e9.svg",
+    "static/media/chevron.svg": "/KaterynaBachkalo/car-rental/static/media/chevron.1fea37a9d2efd15cceec99c859a042e6.svg",
+    "main.d500f278.css.map": "/KaterynaBachkalo/car-rental/static/css/main.d500f278.css.map",
+    "main.83fdd374.js.map": "/KaterynaBachkalo/car-rental/static/js/main.83fdd374.js.map",
+    "80.edd77a1e.chunk.css.map": "/KaterynaBachkalo/car-rental/static/css/80.edd77a1e.chunk.css.map",
+    "80.62cfbe64.chunk.js.map": "/KaterynaBachkalo/car-rental/static/js/80.62cfbe64.chunk.js.map",
+    "608.05512a70.chunk.css.map": "/KaterynaBachkalo/car-rental/static/css/608.05512a70.chunk.css.map",
+    "608.5805826e.chunk.js.map": "/KaterynaBachkalo/car-rental/static/js/608.5805826e.chunk.js.map",
+    "996.9556ba91.chunk.css.map": "/KaterynaBachkalo/car-rental/static/css/996.9556ba91.chunk.css.map",
+    "996.6fd575c2.chunk.js.map": "/KaterynaBachkalo/car-rental/static/js/996.6fd575c2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d500f278.css",
+    "static/js/main.83fdd374.js"
+  ]
+}
