@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import css from "./Filter.module.css";
 import { ReactComponent as IconChevron } from "../../img/chevron.svg";
 import MenuModalBrand from "../MenuModal/MenuModalBrand";
@@ -90,22 +90,6 @@ const Filter = () => {
   const togglePriceMenu = () => {
     setMenuPriceOpen(!isMenuPriceOpen);
   };
-
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.code === "Escape") {
-        setMenuBrandOpen(false);
-        setMenuPriceOpen(false);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isMenuBrandOpen, isMenuPriceOpen]);
-
   return (
     <>
       <form className={css.form} onSubmit={handleSubmit}>
@@ -125,7 +109,10 @@ const Filter = () => {
             />
             <IconChevron className={css.icon} onClick={toggleBrandMenu} />
             {isMenuBrandOpen && (
-              <MenuModalBrand onSelect={handleSelectBrandMenu} />
+              <MenuModalBrand
+                onSelect={handleSelectBrandMenu}
+                onClose={setMenuBrandOpen}
+              />
             )}
           </div>
         </div>
@@ -145,7 +132,10 @@ const Filter = () => {
             />
             <IconChevron className={css.icon} onClick={togglePriceMenu} />
             {isMenuPriceOpen && (
-              <MenuModalPrice onSelect={handleSelectPriceMenu} />
+              <MenuModalPrice
+                onSelect={handleSelectPriceMenu}
+                onClose={setMenuPriceOpen}
+              />
             )}
           </div>
         </div>
