@@ -10,7 +10,7 @@ import {
 import { fetchCarsThunk } from "../../redux/operations";
 import Loader from "../Loader/Loader";
 import css from "./CarList.module.css";
-import { clearState, setloadMoreButton } from "../../redux/carsSlice";
+import { setloadMoreButton } from "../../redux/carsSlice";
 
 const CarList = () => {
   const dispatch = useDispatch();
@@ -20,30 +20,31 @@ const CarList = () => {
   const loadMoreButton = useSelector(selectLoadMoreButton);
 
   const cars = useSelector(selectCars);
-
+  console.log("cars", cars);
   const isLoading = useSelector(selectIsLoading);
 
   const filter = useSelector(selectFilter);
 
-  const { make } = filter;
+  const { make, rentalPrice } = filter;
 
   useEffect(() => {
     const queryParams = { page: currentPage, limit: 12 };
 
     if (make !== "") {
       queryParams.make = make;
-      dispatch(clearState());
+      queryParams.page = 1;
     }
+
+    if (rentalPrice !== "") {
+      queryParams.page = 1;
+    }
+
     dispatch(fetchCarsThunk(queryParams));
-  }, [currentPage, dispatch, make]);
+  }, [currentPage, dispatch, make, rentalPrice]);
 
   const handleLoadMore = () => {
     setCurrentPage((prevPage) => (prevPage += 1));
   };
-
-  const filteredCarsMake = cars.filter((car) =>
-    car.make.toLowerCase().includes(make.toLowerCase())
-  );
 
   useEffect(() => {
     if (cars.length === 32 || make !== "") {
@@ -51,11 +52,34 @@ const CarList = () => {
     }
   }, [cars, dispatch, loadMoreButton, make]);
 
+  const filteredCarsMake = cars.filter((car) =>
+    car.make.toLowerCase().includes(make.toLowerCase())
+  );
+  console.log("filteredCarsMake", filteredCarsMake);
+
+  const filteredPrice =
+    filteredCarsMake.length !== 0
+      ? filteredCarsMake.filter(
+          (car) =>
+            Number(car.rentalPrice.replace("$", "")) <=
+            Number(filter.rentalPrice)
+        )
+      : cars?.filter(
+          (car) =>
+            Number(car.rentalPrice.replace("$", "")) <=
+            Number(filter.rentalPrice)
+        );
+  console.log("filteredPrice", filteredPrice);
+
   return (
     <div>
       <div className={css.wrap}>
-        {filteredCarsMake.length !== 0 && cars
-          ? filteredCarsMake?.map((car) => (
+        {/* {filteredPrice.length === 0 && filteredCarsMake.length === 0 && (
+          <p>Nothing...</p>
+        )} */}
+
+        {filteredPrice.length !== 0
+          ? filteredPrice?.map((car) => (
               <CarItem
                 key={car.id}
                 data={car}

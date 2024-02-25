@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import css from "./Home.module.css";
 import img from "../../img/volvo_xc90.jpeg";
 
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { clearState } from "../../redux/carsSlice";
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearState());
+    };
+  }, [dispatch]);
+
   return (
     <div>
       <div className={css.imageWrap}>

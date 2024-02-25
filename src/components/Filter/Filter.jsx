@@ -27,19 +27,21 @@ const Filter = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (make === "" && rentalPrice === "" && mileageRange.includes("")) {
       return;
     }
 
     dispatch(
       setFilter({
-        make,
-        rentalPrice: `${rentalPrice}`,
+        make: make || filter.make,
+        rentalPrice: rentalPrice || filter.rentalPrice,
         mileage: mileageRange,
       })
     );
 
     reset();
+    dispatch(clearState());
   };
 
   const handleReset = () => {
@@ -167,7 +169,7 @@ const Filter = () => {
           </div>
         </div>
         <button className={css.button}>Search</button>
-        <button className={css.button} onClick={handleReset}>
+        <button className={css.button} onClick={handleReset} type="reset">
           Reset
         </button>
       </form>
