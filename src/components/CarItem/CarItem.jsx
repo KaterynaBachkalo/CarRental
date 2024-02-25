@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToFavorites, deleteFavorites } from "../../redux/carsSlice";
 import { selectFavoritesCars } from "../../redux/selectors";
 
-const CarItem = ({ data, handleLoadMore }) => {
+const CarItem = ({ data }) => {
   const {
     img,
     make,

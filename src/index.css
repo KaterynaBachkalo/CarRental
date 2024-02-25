@@ -10,7 +10,7 @@
   --secondary-color-black: rgba(18, 20, 23, 0.5);
   --secondary-color-grey: rgb(247, 247, 251);
 
-  --backdrop-color-black: rgba(255, 255, 255, 0.9);
+  --backdrop-color-white: rgba(255, 255, 255, 0.9);
 }
 
 * {
@@ -72,7 +72,6 @@ img {
 }
 
 .container {
-  width: 1214px;
   margin: 0 auto;
 }
 

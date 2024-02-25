@@ -1,11 +1,15 @@
-.container {
+.header {
   position: fixed;
+  width: 100%;
+  background-color: var(--backdrop-color-white);
+  z-index: 100;
+}
+
+.container {
   height: 80px;
   width: 1214px;
   padding: 0 15px;
   margin: 0 auto;
-  background-color: var(--backdrop-color-black);
-  z-index: 100;
 }
 
 .navigation,

@@ -32,18 +32,20 @@ const MenuModalBrand = ({ onSelect, onClose }) => {
 
   return (
     <div className={css.dropdownBrand} ref={inputRef}>
-      <ul>
-        {makes &&
-          makes.map((make) => (
-            <li
-              className={css.item}
-              key={make}
-              onClick={() => handleItemClick(make)}
-            >
-              {make}
-            </li>
-          ))}
-      </ul>
+      <div className={css.containerBrand}>
+        <ul>
+          {makes &&
+            makes.map((make) => (
+              <li
+                className={css.item}
+                key={make}
+                onClick={() => handleItemClick(make)}
+              >
+                {make}
+              </li>
+            ))}
+        </ul>
+      </div>
     </div>
   );
 };

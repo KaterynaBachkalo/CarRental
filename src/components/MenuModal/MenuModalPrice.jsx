@@ -44,17 +44,19 @@ const MenuModalPrice = ({ onSelect, onClose }) => {
 
   return (
     <div className={css.dropdownPrice} ref={inputRef}>
-      <ul>
-        {prices.map((price) => (
-          <li
-            className={css.item}
-            key={nanoid()}
-            onClick={() => handleItemClick(price)}
-          >
-            {price}
-          </li>
-        ))}
-      </ul>
+      <div className={css.container}>
+        <ul>
+          {prices.map((price) => (
+            <li
+              className={css.item}
+              key={nanoid()}
+              onClick={() => handleItemClick(price)}
+            >
+              {price}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

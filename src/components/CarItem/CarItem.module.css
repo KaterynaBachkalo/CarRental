@@ -1,4 +1,7 @@
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 274px;
   margin: 0;
 }
@@ -38,25 +41,18 @@
 }
 
 .subtitle {
-  display: flex;
+  display: inline;
   align-items: center;
   margin: 0 0 4px;
 
   color: var(--secondary-color-black);
   font-size: 12px;
-
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-.stroke::after {
-  content: "";
-  display: inline-block;
-  height: 16px;
-  width: 1px;
+.stroke {
+  display: inline;
+  border: 1px solid rgba(18, 20, 23, 0.1);
   margin: 0 6px;
-  background-color: var(--secondary-color-black);
 }
 
 .button {

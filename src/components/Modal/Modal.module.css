@@ -7,6 +7,7 @@
   overflow: auto;
 
   background-color: var(--secondary-color-black);
+  z-index: 200;
 }
 
 .container {
@@ -25,6 +26,7 @@
   border-radius: 24px;
 
   background: var(--primary-color-white);
+  z-index: 300;
 }
 
 .button {
@@ -76,7 +78,7 @@
 }
 
 .subtitle {
-  display: flex;
+  display: inline;
   align-items: center;
 
   color: var(--secondary-color-black);
@@ -84,12 +86,9 @@
   margin: 0 0 4px;
 }
 
-.stroke::after {
-  content: "";
-  display: inline-block;
-  height: 16px;
-  width: 1px;
-  background-color: rgba(18, 20, 23, 0.1);
+.stroke {
+  display: inline;
+  border: 1px solid rgba(18, 20, 23, 0.1);
   margin: 0 6px;
 }
 
@@ -98,7 +97,7 @@
 
   font-size: 14px;
   line-height: 1.42;
-  margin-bottom: 24px;
+  margin: 14px 0 24px 0;
 }
 
 .titleDesc {
@@ -138,7 +137,7 @@
   border-radius: 35px;
   padding: 7px 14px;
 
-  background: var(--primary-color-white);
+  background: rgb(249, 249, 249);
   color: rgb(54, 53, 53);
 
   font-size: 12px;
@@ -151,7 +150,7 @@
   border-radius: 35px;
   padding: 7px 14px;
 
-  background: var(--primary-color-white);
+  background: rgb(249, 249, 249);
   color: rgb(54, 53, 53);
 
   font-family: Montserrat;

@@ -6,7 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 const Header = () => {
   const location = useLocation();
   return (
-    <header>
+    <header className={css.header}>
       <div className={css.container}>
         <nav className={css.navigation}>
           <Link to="/">
