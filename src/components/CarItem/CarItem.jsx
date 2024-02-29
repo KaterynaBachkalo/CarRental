@@ -48,36 +48,38 @@ const CarItem = ({ data }) => {
 
   return (
     <div className={css.card}>
-      <div className={css.imageWrap}>
-        <img className={css.image} src={img} alt={make} />
-        {!favorites.includes(id) ? (
-          <IconEmptyLike className={css.like} onClick={addToFavorite} />
-        ) : (
-          <IconFillLike className={css.like} onClick={deleteFavorite} />
-        )}
-      </div>
-      <h2 className={css.title}>
-        <p>
-          {make} <span className={css.titleModel}>{model}</span>, {year}
+      <div className={css.wraper}>
+        <div className={css.imageWrap}>
+          <img className={css.image} src={img} alt={make} />
+          {!favorites.includes(id) ? (
+            <IconEmptyLike className={css.like} onClick={addToFavorite} />
+          ) : (
+            <IconFillLike className={css.like} onClick={deleteFavorite} />
+          )}
+        </div>
+        <h2 className={css.title}>
+          <p>
+            {make} <span className={css.titleModel}>{model}</span>, {year}
+          </p>
+          <p>{rentalPrice}</p>
+        </h2>
+        <p className={css.subtitle}>
+          {adressArr[1]}
+          <span className={css.stroke}></span>
+          {adressArr[2]}
+          <span className={css.stroke}></span>
+          {rentalCompany}
         </p>
-        <p>{rentalPrice}</p>
-      </h2>
-      <p className={css.subtitle}>
-        {adressArr[1]}
-        <span className={css.stroke}></span>
-        {adressArr[2]}
-        <span className={css.stroke}></span>
-        {rentalCompany}
-      </p>
-      <p className={css.subtitle}>
-        {type}
-        <span className={css.stroke}></span>
-        {model}
-        <span className={css.stroke}></span>
-        {id}
-        <span className={css.stroke}></span>
-        {functionalities[0]}
-      </p>
+        <p className={css.subtitle}>
+          {type}
+          <span className={css.stroke}></span>
+          {model}
+          <span className={css.stroke}></span>
+          {id}
+          <span className={css.stroke}></span>
+          {functionalities[0]}
+        </p>
+      </div>
       <button className={css.button} onClick={openModal}>
         Learn more
       </button>

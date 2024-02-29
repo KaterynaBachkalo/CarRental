@@ -25,7 +25,7 @@ const CarList = () => {
 
   const filter = useSelector(selectFilter);
 
-  const { make, rentalPrice } = filter;
+  const { make, rentalPrice, mileage } = filter;
 
   useEffect(() => {
     const queryParams = { page: currentPage, limit: 12 };
@@ -35,22 +35,27 @@ const CarList = () => {
       queryParams.page = 1;
     }
 
-    if (rentalPrice !== "") {
+    if (rentalPrice !== "" || !mileage.includes("")) {
       queryParams.page = 1;
     }
 
     dispatch(fetchCarsThunk(queryParams));
-  }, [currentPage, dispatch, make, rentalPrice]);
+  }, [currentPage, dispatch, make, rentalPrice, mileage]);
 
   const handleLoadMore = () => {
     setCurrentPage((prevPage) => (prevPage += 1));
   };
 
   useEffect(() => {
-    if (cars.length === 32 || make !== "") {
+    if (
+      cars.length === 32 ||
+      make !== "" ||
+      rentalPrice !== "" ||
+      !mileage.includes("")
+    ) {
       dispatch(setloadMoreButton(false));
     }
-  }, [cars, dispatch, loadMoreButton, make]);
+  }, [cars, dispatch, loadMoreButton, make, rentalPrice, mileage]);
 
   const filteredCarsMake = cars.filter((car) =>
     car.make.toLowerCase().includes(make.toLowerCase())
@@ -69,30 +74,25 @@ const CarList = () => {
             Number(car.rentalPrice.replace("$", "")) <=
             Number(filter.rentalPrice)
         );
+
   console.log("filteredPrice", filteredPrice);
 
   return (
     <div>
       <div className={css.wrap}>
-        {/* {filteredPrice.length === 0 && filteredCarsMake.length === 0 && (
-          <p>Nothing...</p>
-        )} */}
-
-        {filteredPrice.length !== 0
-          ? filteredPrice?.map((car) => (
-              <CarItem
-                key={car.id}
-                data={car}
-                handleLoadMore={handleLoadMore}
-              />
-            ))
-          : cars?.map((car) => (
-              <CarItem
-                key={car.id}
-                data={car}
-                handleLoadMore={handleLoadMore}
-              />
-            ))}
+        {filteredPrice.length !== 0 ? (
+          filteredPrice?.map((car) => (
+            <CarItem key={car.id} data={car} handleLoadMore={handleLoadMore} />
+          ))
+        ) : cars.length !== 0 ? (
+          cars.map((car) => (
+            <CarItem key={car.id} data={car} handleLoadMore={handleLoadMore} />
+          ))
+        ) : (
+          <p className={css.textNotFound}>
+            A car with these parameters was not found :(
+          </p>
+        )}
       </div>
 
       {isLoading && <Loader />}

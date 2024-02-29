@@ -6,6 +6,11 @@
   margin: 0;
 }
 
+.wraper {
+  display: flex;
+  flex-direction: column;
+}
+
 .imageWrap {
   position: relative;
   width: 274px;

@@ -13,30 +13,40 @@ const Filter = () => {
   const [isMenuBrandOpen, setMenuBrandOpen] = useState(false);
   const [isMenuPriceOpen, setMenuPriceOpen] = useState(false);
 
-  const [make, setMake] = useState("");
-  const [rentalPrice, setRentalPrice] = useState("");
-  const [mileageRange, setMileageRange] = useState(["", ""]);
+  const [brand, setBrand] = useState("");
+  const [price, setPrice] = useState("");
+  const [range, setRange] = useState(["", ""]);
 
   const filter = useSelector(selectFilter);
+  const { make, rentalPrice, mileage } = filter;
 
   const reset = () => {
-    setMake("");
-    setRentalPrice("");
-    setMileageRange(["", ""]);
+    setBrand("");
+    setPrice("");
+    setRange(["", ""]);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (make === "" && rentalPrice === "" && mileageRange.includes("")) {
+    if (brand === "" && price === "" && range.includes("")) {
+      return;
+    }
+
+    if (
+      (brand === make && price === "" && range.includes("")) ||
+      (brand === "" && price === rentalPrice && range.includes("")) ||
+      (brand === make && price === rentalPrice && range === mileage) ||
+      (brand === "" && price === "" && range === mileage)
+    ) {
       return;
     }
 
     dispatch(
       setFilter({
-        make: make || filter.make,
-        rentalPrice: rentalPrice || filter.rentalPrice,
-        mileage: mileageRange,
+        make: brand || make,
+        rentalPrice: price || rentalPrice,
+        mileage: range || mileage,
       })
     );
 
@@ -47,11 +57,7 @@ const Filter = () => {
   const handleReset = () => {
     reset();
 
-    if (
-      filter.make !== "" ||
-      !filter.mileage.includes("") ||
-      filter.rentalPrice !== ""
-    ) {
+    if (make !== "" || !mileage.includes("") || rentalPrice !== "") {
       dispatch(clearState());
       dispatch(resetFilter());
     }
@@ -60,26 +66,26 @@ const Filter = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "brand") {
-      setMake(value);
+      setBrand(value);
     } else if (name === "price") {
-      setRentalPrice(value);
+      setPrice(value);
     }
   };
 
   const handleMileageChange = (index, value) => {
-    setMileageRange((prevRange) => {
+    setRange((prevRange) => {
       const newRange = [...prevRange];
       newRange[index] = Number(value);
       return newRange;
     });
   };
   const handleSelectBrandMenu = (selected) => {
-    setMake(selected);
+    setBrand(selected);
     setMenuBrandOpen(false);
   };
 
   const handleSelectPriceMenu = (selected) => {
-    setRentalPrice(selected);
+    setPrice(selected);
     setMenuPriceOpen(false);
   };
 
@@ -103,7 +109,7 @@ const Filter = () => {
               placeholder="Enter the text"
               name="brand"
               id="brand"
-              value={make}
+              value={brand}
               className={css.inputBrand}
               onChange={handleChange}
             />
@@ -126,7 +132,7 @@ const Filter = () => {
               name="price"
               placeholder="To $"
               id="price"
-              value={rentalPrice}
+              value={price}
               className={css.inputPrice}
               onChange={handleChange}
             />
@@ -149,7 +155,7 @@ const Filter = () => {
               <input
                 type="number"
                 id="mileage"
-                value={mileageRange[0]}
+                value={range[0]}
                 className={css.inputFrom}
                 name="from"
                 onChange={(e) => handleMileageChange(0, e.target.value)}
@@ -159,7 +165,7 @@ const Filter = () => {
             <div className={css.inputLabelWrap}>
               <input
                 type="number"
-                value={mileageRange[1]}
+                value={range[1]}
                 className={css.inputTo}
                 name="to"
                 onChange={(e) => handleMileageChange(1, e.target.value)}

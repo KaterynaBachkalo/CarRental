@@ -20,3 +20,10 @@
 .LoadMoreBtn:hover {
   color: var(--secondary-color-blue);
 }
+
+.textNotFound {
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0 auto;
+  color: var(--primary-color-blue);
+}
