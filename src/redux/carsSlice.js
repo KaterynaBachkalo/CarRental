@@ -11,19 +11,6 @@ const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
 
-  // if (state.error === "Request failed with status code 404") {
-  //   toast.warning("A car with these parameters was not found", {
-  //     position: "top-center",
-  //     autoClose: 2000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //     theme: "colored",
-  //   });
-  // }
-
   if (state.error === "Network Error") {
     toast.error("Something went wrong, please try later", {
       position: "top-center",

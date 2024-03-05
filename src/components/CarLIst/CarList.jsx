@@ -20,7 +20,7 @@ const CarList = () => {
   const loadMoreButton = useSelector(selectLoadMoreButton);
 
   const cars = useSelector(selectCars);
-  console.log("cars", cars);
+
   const isLoading = useSelector(selectIsLoading);
 
   const filter = useSelector(selectFilter);
@@ -57,43 +57,69 @@ const CarList = () => {
     }
   }, [cars, dispatch, loadMoreButton, make, rentalPrice, mileage]);
 
-  const filteredCarsMake = cars.filter((car) =>
+  // --------------------------------------
+
+  const filteredCarsMake = cars?.filter((car) =>
     car.make.toLowerCase().includes(make.toLowerCase())
   );
   console.log("filteredCarsMake", filteredCarsMake);
 
-  const filteredPrice =
-    filteredCarsMake.length !== 0
-      ? filteredCarsMake.filter(
-          (car) =>
-            Number(car.rentalPrice.replace("$", "")) <=
-            Number(filter.rentalPrice)
-        )
-      : cars?.filter(
-          (car) =>
-            Number(car.rentalPrice.replace("$", "")) <=
-            Number(filter.rentalPrice)
-        );
+  //--------------------------------------
+  const filteredPrice = filteredCarsMake?.filter(
+    (car) =>
+      Number(car.rentalPrice.replace("$", "")) <= Number(filter.rentalPrice)
+  );
 
   console.log("filteredPrice", filteredPrice);
 
+  //--------------------------------------
+
+  const filteredMileage =
+    filteredPrice?.length === 0
+      ? filteredCarsMake?.filter(
+          (car) => car.mileage >= mileage[0] && car.mileage <= mileage[1]
+        )
+      : filteredPrice?.filter(
+          (car) => car.mileage >= mileage[0] && car.mileage <= mileage[1]
+        );
+
+  console.log("filteredMileage", filteredMileage);
+
   return (
     <div>
-      <div className={css.wrap}>
-        {filteredPrice.length !== 0 ? (
-          filteredPrice?.map((car) => (
-            <CarItem key={car.id} data={car} handleLoadMore={handleLoadMore} />
-          ))
-        ) : cars.length !== 0 ? (
-          cars.map((car) => (
-            <CarItem key={car.id} data={car} handleLoadMore={handleLoadMore} />
-          ))
-        ) : (
-          <p className={css.textNotFound}>
-            A car with these parameters was not found :(
-          </p>
-        )}
-      </div>
+      {!isLoading && (
+        <div className={css.wrap}>
+          {filteredMileage?.length !== 0 ? (
+            filteredMileage?.map((car) => (
+              <CarItem
+                key={car.id}
+                data={car}
+                handleLoadMore={handleLoadMore}
+              />
+            ))
+          ) : filteredPrice?.length !== 0 ? (
+            filteredPrice?.map((car) => (
+              <CarItem
+                key={car.id}
+                data={car}
+                handleLoadMore={handleLoadMore}
+              />
+            ))
+          ) : cars.length !== 0 ? (
+            cars?.map((car) => (
+              <CarItem
+                key={car.id}
+                data={car}
+                handleLoadMore={handleLoadMore}
+              />
+            ))
+          ) : (
+            <p className={css.textNotFound}>
+              A car with these parameters was not found :(
+            </p>
+          )}
+        </div>
+      )}
 
       {isLoading && <Loader />}
 
