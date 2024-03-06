@@ -7,15 +7,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetFilter, setFilter } from "../../redux/filterSlice";
 import { selectFilter } from "../../redux/selectors";
 import { clearState } from "../../redux/carsSlice";
+import { useSearchParams } from "react-router-dom";
 
 const Filter = () => {
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [isMenuBrandOpen, setMenuBrandOpen] = useState(false);
   const [isMenuPriceOpen, setMenuPriceOpen] = useState(false);
 
-  const [brand, setBrand] = useState("");
-  const [price, setPrice] = useState("");
-  const [range, setRange] = useState(["", ""]);
+  const [brand, setBrand] = useState(searchParams.get("brand"));
+  const [price, setPrice] = useState(searchParams.get("price"));
+  const [range, setRange] = useState([
+    searchParams.get("from"),
+    searchParams.get("to"),
+  ]);
 
   const filter = useSelector(selectFilter);
   const { make, rentalPrice, mileage } = filter;
@@ -50,12 +56,52 @@ const Filter = () => {
       })
     );
 
+    if (brand !== "") {
+      setSearchParams({
+        brand,
+      });
+    }
+
+    if (price !== "") {
+      setSearchParams({
+        price,
+      });
+    }
+
+    if (!range.includes("")) {
+      setSearchParams({
+        from: range[0],
+        to: range[1],
+      });
+    }
+
+    if ((brand !== "" || make !== "") && price !== "") {
+      setSearchParams({
+        brand: brand || make,
+        price,
+      });
+    }
+
+    if (
+      (brand !== "" || make !== "") &&
+      (price !== "" || rentalPrice !== "") &&
+      !range.includes("")
+    ) {
+      setSearchParams({
+        brand: brand || make,
+        price: price || rentalPrice,
+        from: range[0],
+        to: range[1],
+      });
+    }
+
     reset();
     dispatch(clearState());
   };
 
   const handleReset = () => {
     reset();
+    setSearchParams({});
 
     if (make !== "" || !mileage.includes("") || rentalPrice !== "") {
       dispatch(clearState());

@@ -59,18 +59,15 @@ const CarList = () => {
 
   // --------------------------------------
 
-  const filteredCarsMake = cars?.filter((car) =>
+  let filteredCarsMake = cars?.filter((car) =>
     car.make.toLowerCase().includes(make.toLowerCase())
   );
-  console.log("filteredCarsMake", filteredCarsMake);
-
   //--------------------------------------
-  const filteredPrice = filteredCarsMake?.filter(
-    (car) =>
-      Number(car.rentalPrice.replace("$", "")) <= Number(filter.rentalPrice)
-  );
 
-  console.log("filteredPrice", filteredPrice);
+  const filteredPrice = filteredCarsMake?.filter((car) => {
+    const carRentalPrice = Number(car.rentalPrice.replace("$", ""));
+    return carRentalPrice <= Number(rentalPrice);
+  });
 
   //--------------------------------------
 
@@ -82,8 +79,6 @@ const CarList = () => {
       : filteredPrice?.filter(
           (car) => car.mileage >= mileage[0] && car.mileage <= mileage[1]
         );
-
-  console.log("filteredMileage", filteredMileage);
 
   return (
     <div>
@@ -105,14 +100,18 @@ const CarList = () => {
                 handleLoadMore={handleLoadMore}
               />
             ))
-          ) : cars.length !== 0 ? (
-            cars?.map((car) => (
+          ) : cars?.length !== 0 ? (
+            filteredCarsMake?.map((car) => (
               <CarItem
                 key={car.id}
                 data={car}
                 handleLoadMore={handleLoadMore}
               />
             ))
+          ) : filteredPrice === 0 ? (
+            <p className={css.textNotFound}>
+              A car with these parameters was not found :(
+            </p>
           ) : (
             <p className={css.textNotFound}>
               A car with these parameters was not found :(
