@@ -11,9 +11,23 @@ import { fetchCarsThunk } from "../../redux/operations";
 import Loader from "../Loader/Loader";
 import css from "./CarList.module.css";
 import { setloadMoreButton } from "../../redux/carsSlice";
+import { useSearchParams } from "react-router-dom";
 
 const CarList = () => {
   const dispatch = useDispatch();
+
+  const filter = useSelector(selectFilter);
+
+  const { make, rentalPrice, mileage } = filter;
+
+  const [searchParams] = useSearchParams();
+
+  const brand = searchParams.get("brand") || make;
+  const price = searchParams.get("price") || rentalPrice;
+  const range = [
+    searchParams.get("from") || mileage[0],
+    searchParams.get("to") || mileage[1],
+  ];
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -23,10 +37,6 @@ const CarList = () => {
 
   const isLoading = useSelector(selectIsLoading);
 
-  const filter = useSelector(selectFilter);
-
-  const { make, rentalPrice, mileage } = filter;
-
   useEffect(() => {
     const queryParams = { page: currentPage, limit: 12 };
 
@@ -35,12 +45,17 @@ const CarList = () => {
       queryParams.page = 1;
     }
 
+    if (brand !== "") {
+      queryParams.make = brand;
+      queryParams.page = 1;
+    }
+
     if (rentalPrice !== "" || !mileage.includes("")) {
       queryParams.page = 1;
     }
 
     dispatch(fetchCarsThunk(queryParams));
-  }, [currentPage, dispatch, make, rentalPrice, mileage]);
+  }, [currentPage, dispatch, make, rentalPrice, mileage, brand]);
 
   const handleLoadMore = () => {
     setCurrentPage((prevPage) => (prevPage += 1));
@@ -62,22 +77,27 @@ const CarList = () => {
   let filteredCarsMake = cars?.filter((car) =>
     car.make.toLowerCase().includes(make.toLowerCase())
   );
+
   //--------------------------------------
 
-  const filteredPrice = filteredCarsMake?.filter((car) => {
-    const carRentalPrice = Number(car.rentalPrice.replace("$", ""));
-    return carRentalPrice <= Number(rentalPrice);
-  });
+  const filteredPrice = filteredCarsMake?.filter(
+    (car) =>
+      Number(car.rentalPrice.replace("$", "")) <= Number(rentalPrice || price)
+  );
 
   //--------------------------------------
 
   const filteredMileage =
     filteredPrice?.length === 0
       ? filteredCarsMake?.filter(
-          (car) => car.mileage >= mileage[0] && car.mileage <= mileage[1]
+          (car) =>
+            car.mileage >= (mileage[0] || range[0]) &&
+            car.mileage <= (mileage[1] || range[1])
         )
       : filteredPrice?.filter(
-          (car) => car.mileage >= mileage[0] && car.mileage <= mileage[1]
+          (car) =>
+            car.mileage >= (mileage[0] || range[0]) &&
+            car.mileage <= (mileage[1] || range[1])
         );
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import css from "./Filter.module.css";
 import { ReactComponent as IconChevron } from "../../img/chevron.svg";
 import MenuModalBrand from "../MenuModal/MenuModalBrand";
@@ -11,20 +11,27 @@ import { useSearchParams } from "react-router-dom";
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const [searchParams, setSearchParams] = useSearchParams();
 
   const [isMenuBrandOpen, setMenuBrandOpen] = useState(false);
   const [isMenuPriceOpen, setMenuPriceOpen] = useState(false);
 
-  const [brand, setBrand] = useState(searchParams.get("brand"));
-  const [price, setPrice] = useState(searchParams.get("price"));
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [brand, setBrand] = useState(searchParams.get("brand") || "");
+  const [price, setPrice] = useState(searchParams.get("price") || "");
   const [range, setRange] = useState([
-    searchParams.get("from"),
-    searchParams.get("to"),
+    searchParams.get("from") || "",
+    searchParams.get("to") || "",
   ]);
 
   const filter = useSelector(selectFilter);
   const { make, rentalPrice, mileage } = filter;
+
+  useEffect(() => {
+    setBrand(searchParams.get("brand") || "");
+    setPrice(searchParams.get("price") || "");
+    setRange([searchParams.get("from") || "", searchParams.get("to") || ""]);
+  }, [searchParams]);
 
   const reset = () => {
     setBrand("");
@@ -77,7 +84,7 @@ const Filter = () => {
 
     if ((brand !== "" || make !== "") && price !== "") {
       setSearchParams({
-        brand: brand || make,
+        brand,
         price,
       });
     }
@@ -88,8 +95,8 @@ const Filter = () => {
       !range.includes("")
     ) {
       setSearchParams({
-        brand: brand || make,
-        price: price || rentalPrice,
+        brand,
+        price,
         from: range[0],
         to: range[1],
       });
@@ -101,9 +108,14 @@ const Filter = () => {
 
   const handleReset = () => {
     reset();
-    setSearchParams({});
 
     if (make !== "" || !mileage.includes("") || rentalPrice !== "") {
+      dispatch(clearState());
+      dispatch(resetFilter());
+    }
+    setSearchParams({});
+
+    if (brand !== "" || !range.includes("") || price !== "") {
       dispatch(clearState());
       dispatch(resetFilter());
     }
