@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/car-rental/static/css/main.9fe3b2f9.css",
-    "main.js": "/car-rental/static/js/main.b77e907c.js",
+    "main.js": "/car-rental/static/js/main.8840c043.js",
     "static/css/220.b1f3193b.chunk.css": "/car-rental/static/css/220.b1f3193b.chunk.css",
     "static/js/220.70410101.chunk.js": "/car-rental/static/js/220.70410101.chunk.js",
     "static/css/608.e511c9e7.chunk.css": "/car-rental/static/css/608.e511c9e7.chunk.css",
-    "static/js/608.09888521.chunk.js": "/car-rental/static/js/608.09888521.chunk.js",
+    "static/js/608.a8ec4321.chunk.js": "/car-rental/static/js/608.a8ec4321.chunk.js",
     "static/css/996.e6eb914a.chunk.css": "/car-rental/static/css/996.e6eb914a.chunk.css",
     "static/js/996.b36428e1.chunk.js": "/car-rental/static/js/996.b36428e1.chunk.js",
     "static/media/volvo_xc90.jpeg": "/car-rental/static/media/volvo_xc90.5bb4c2060a6f869361ae.jpeg",
@@ -16,16 +16,16 @@
     "static/media/close.svg": "/car-rental/static/media/close.a21c62be02aca9ad171b3de10c0452e9.svg",
     "static/media/chevron.svg": "/car-rental/static/media/chevron.1fea37a9d2efd15cceec99c859a042e6.svg",
     "main.9fe3b2f9.css.map": "/car-rental/static/css/main.9fe3b2f9.css.map",
-    "main.b77e907c.js.map": "/car-rental/static/js/main.b77e907c.js.map",
+    "main.8840c043.js.map": "/car-rental/static/js/main.8840c043.js.map",
     "220.b1f3193b.chunk.css.map": "/car-rental/static/css/220.b1f3193b.chunk.css.map",
     "220.70410101.chunk.js.map": "/car-rental/static/js/220.70410101.chunk.js.map",
     "608.e511c9e7.chunk.css.map": "/car-rental/static/css/608.e511c9e7.chunk.css.map",
-    "608.09888521.chunk.js.map": "/car-rental/static/js/608.09888521.chunk.js.map",
+    "608.a8ec4321.chunk.js.map": "/car-rental/static/js/608.a8ec4321.chunk.js.map",
     "996.e6eb914a.chunk.css.map": "/car-rental/static/css/996.e6eb914a.chunk.css.map",
     "996.b36428e1.chunk.js.map": "/car-rental/static/js/996.b36428e1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9fe3b2f9.css",
-    "static/js/main.b77e907c.js"
+    "static/js/main.8840c043.js"
   ]
 }
