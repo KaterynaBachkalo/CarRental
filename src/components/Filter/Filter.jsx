@@ -8,6 +8,7 @@ import { resetFilter, setFilter } from "../../redux/filterSlice";
 import { selectFilter } from "../../redux/selectors";
 import { clearState } from "../../redux/carsSlice";
 import { useSearchParams } from "react-router-dom";
+import { ImFilter } from "react-icons/im";
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -156,6 +157,7 @@ const Filter = () => {
   };
   return (
     <>
+      <ImFilter className={css.iconFilter} />
       <form className={css.form} onSubmit={handleSubmit}>
         <div className={css.labelwrap}>
           <label htmlFor="brand" className={css.label}>

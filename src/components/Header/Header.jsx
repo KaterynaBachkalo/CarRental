@@ -44,14 +44,15 @@ const Header = () => {
               <img className={css.logo} src={Iconlogo} alt="Logo" />
             </Link>
 
-            <FiAlignRight className={css.burger} onClick={handleBurgerClick} />
+            <FiAlignRight className={css.burger} onClick={setBurgerActive} />
           </div>
 
-          <div className={css.wrapper} ref={menuRef} onClick={setBurgerActive}>
+          <div className={css.wrapper}>
             <div
               className={`${css.navigationSection} ${
                 isBurgerActive ? css.active : ""
               }`}
+              ref={menuRef}
             >
               <ul className={css.list}>
                 <li>

@@ -1,5 +1,21 @@
 .container {
   padding: 120px 15px;
-  width: 1214px;
+  width: 320px;
   margin: 0 auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    padding: 120px 15px;
+    width: 768px;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 1214px) {
+  .container {
+    padding: 120px 15px;
+    width: 1214px;
+    margin: 0 auto;
+  }
 }

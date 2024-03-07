@@ -10,7 +10,7 @@
   width: 320px;
   padding: 10px 15px;
   margin: 0 auto;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 @media only screen and (min-width: 768px) {
@@ -181,7 +181,8 @@
 }
 
 .active {
-  color: var(--primary-color-blue);
+  color: var(--primary-color-white);
+  background-color: var(--primary-color-blue);
   border-radius: 12px;
   padding: 4px;
 }
