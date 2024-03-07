@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import css from "./Filter.module.css";
 import { ReactComponent as IconChevron } from "../../img/chevron.svg";
 import MenuModalBrand from "../MenuModal/MenuModalBrand";
@@ -12,6 +12,10 @@ import { ImFilter } from "react-icons/im";
 
 const Filter = () => {
   const dispatch = useDispatch();
+
+  const menuRef = useRef(null);
+
+  const [isFilterActive, setFilterActive] = useState(false);
 
   const [isMenuBrandOpen, setMenuBrandOpen] = useState(false);
   const [isMenuPriceOpen, setMenuPriceOpen] = useState(false);
@@ -155,10 +159,37 @@ const Filter = () => {
   const togglePriceMenu = () => {
     setMenuPriceOpen(!isMenuPriceOpen);
   };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.code === "Escape") {
+        setFilterActive(false);
+      }
+    };
+
+    const handleClose = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setFilterActive(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("mousedown", handleClose);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.addEventListener("mousedown", handleClose);
+    };
+  }, [setFilterActive]);
+
   return (
-    <>
-      <ImFilter className={css.iconFilter} />
-      <form className={css.form} onSubmit={handleSubmit}>
+    <div className={css.formWrapper}>
+      <ImFilter className={css.iconFilter} onClick={setFilterActive} />
+
+      <form
+        className={`${css.form} ${isFilterActive ? css.active : ""}`}
+        onSubmit={handleSubmit}
+        ref={menuRef}
+      >
         <div className={css.labelwrap}>
           <label htmlFor="brand" className={css.label}>
             Car brand
@@ -234,12 +265,14 @@ const Filter = () => {
             </div>
           </div>
         </div>
-        <button className={css.button}>Search</button>
-        <button className={css.button} onClick={handleReset} type="reset">
-          Reset
-        </button>
+        <div className={css.buttonWrap}>
+          <button className={css.button}>Search</button>
+          <button className={css.button} onClick={handleReset} type="reset">
+            Reset
+          </button>
+        </div>
       </form>
-    </>
+    </div>
   );
 };
 

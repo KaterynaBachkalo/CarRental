@@ -6,11 +6,8 @@ import { FiAlignRight } from "react-icons/fi";
 
 const Header = () => {
   const location = useLocation();
-  const [isBurgerActive, setBurgerActive] = useState(false);
 
-  const handleBurgerClick = () => {
-    setBurgerActive(!isBurgerActive);
-  };
+  const [isBurgerActive, setBurgerActive] = useState(false);
 
   const menuRef = useRef(null);
 

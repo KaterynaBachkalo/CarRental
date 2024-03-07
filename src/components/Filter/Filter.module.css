@@ -1,6 +1,18 @@
+.formWrapper {
+  position: relative;
+}
+
 .iconFilter {
   display: block;
   margin-bottom: 20px;
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+  fill: var(--primary-color-black);
+}
+
+.iconFilter:hover {
+  fill: var(--secondary-color-blue);
 }
 
 @media only screen and (min-width: 768px) {
@@ -13,14 +25,40 @@
   display: none;
 }
 
+.form.active {
+  position: absolute;
+  top: 30px;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  z-index: 100;
+
+  background-color: var(--primary-color-white);
+  box-shadow: 0px 4px 36px 0px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(18, 20, 23, 0.05);
+  border-radius: 14px;
+
+  padding: 12px;
+  width: 290px;
+}
+
 @media only screen and (min-width: 768px) {
   .form {
     display: flex;
     align-items: flex-end;
-    gap: 18px;
+    gap: 12px;
 
     margin: 0 auto;
     margin-bottom: 50px;
+    justify-content: space-between;
+  }
+}
+
+@media only screen and (min-width: 1214px) {
+  .form {
+    gap: 18px;
     justify-content: center;
   }
 }
@@ -40,6 +78,30 @@
 
 .inputwrap {
   display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+@media only screen and (min-width: 768px) {
+  .inputwrap {
+    flex-direction: row;
+    gap: 0;
+    margin-bottom: 0;
+  }
+}
+
+.buttonWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media only screen and (min-width: 768px) {
+  .buttonWrap {
+    display: flex;
+    flex-direction: row;
+  }
 }
 
 .button {
@@ -96,14 +158,16 @@ input {
 
 .inputBrand {
   border-radius: 14px;
-  width: 224px;
+  width: 264px;
   padding: 14px 89px 14px 18px;
+  margin-bottom: 12px;
 }
 
 @media only screen and (min-width: 768px) {
   .inputBrand {
     width: 160px;
     padding: 14px 14px 14px 18px;
+    margin-bottom: 0;
   }
 }
 
@@ -116,31 +180,28 @@ input {
 
 .inputPrice {
   border-radius: 14px;
-  width: 125px;
+  width: 264px;
   padding: 14px 18px;
+  margin-bottom: 12px;
 }
 
 @media only screen and (min-width: 768px) {
   .inputPrice {
-    border-radius: 14px;
     width: 100px;
-    padding: 14px 18px;
+    margin-bottom: 0;
   }
 }
 
 @media only screen and (min-width: 1214px) {
   .inputPrice {
-    border-radius: 14px;
     width: 125px;
-    padding: 14px 18px;
   }
 }
 
 .inputFrom {
-  border-right: 1px solid rgba(138, 138, 137, 0.2);
-  border-radius: 14px 0px 0px 14px;
+  border-radius: 14px;
   background: var(--secondary-color-grey);
-  width: 160px;
+  width: 264px;
   padding: 14px 24px 14px 75px;
 }
 
@@ -162,8 +223,8 @@ input {
 }
 
 .inputTo {
-  width: 160px;
-  border-radius: 0px 14px 14px 0px;
+  width: 264px;
+  border-radius: 14px;
   background: rgb(247, 247, 251);
   padding: 14px 24px 14px 53px;
 }
