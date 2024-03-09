@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { IoIosArrowDropupCircle } from "react-icons/io";
+import { ReactComponent as IconArrowUp } from "../../img/arrowup.svg";
 import css from "./ScrollToTopButton.module.css";
 
 const ScrollToTopButton = () => {
@@ -29,9 +29,7 @@ const ScrollToTopButton = () => {
 
   return (
     <div className={`${css.scroll} ${isVisible ? css.visible : ""}`}>
-      <button onClick={scrollToTop}>
-        <IoIosArrowDropupCircle />
-      </button>
+      <IconArrowUp onClick={scrollToTop} className={css.IconScroll} />
     </div>
   );
 };

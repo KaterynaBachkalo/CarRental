@@ -11,6 +11,10 @@ const Header = () => {
 
   const menuRef = useRef(null);
 
+  const toggleBurger = (event) => {
+    setBurgerActive(!isBurgerActive);
+  };
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.code === "Escape") {
@@ -28,7 +32,7 @@ const Header = () => {
     document.addEventListener("mousedown", handleClose);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      document.addEventListener("mousedown", handleClose);
+      document.removeEventListener("mousedown", handleClose);
     };
   }, [setBurgerActive]);
 
@@ -41,7 +45,7 @@ const Header = () => {
               <img className={css.logo} src={Iconlogo} alt="Logo" />
             </Link>
 
-            <FiAlignRight className={css.burger} onClick={setBurgerActive} />
+            <FiAlignRight className={css.burger} onClick={toggleBurger} />
           </div>
 
           <div className={css.wrapper}>

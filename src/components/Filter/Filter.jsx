@@ -177,7 +177,7 @@ const Filter = () => {
     document.addEventListener("mousedown", handleClose);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      document.addEventListener("mousedown", handleClose);
+      document.removeEventListener("mousedown", handleClose);
     };
   }, [setFilterActive]);
 
