@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import css from "./MenuModal.module.css";
 import makes from "../../data/makes.json";
+import useCloseModals from "../services/closeModals";
 
 const MenuModalBrand = ({ onSelect, onClose }) => {
   const handleItemClick = (selectedBrand) => {
@@ -9,26 +10,7 @@ const MenuModalBrand = ({ onSelect, onClose }) => {
 
   const inputRef = useRef(null);
 
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.code === "Escape") {
-        onClose(false);
-      }
-    };
-
-    const handleClose = (event) => {
-      if (inputRef.current && !inputRef.current.contains(event.target)) {
-        onClose(false);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("mousedown", handleClose);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.addEventListener("mousedown", handleClose);
-    };
-  }, [onClose]);
+  useCloseModals(onClose);
 
   return (
     <div className={css.dropdownBrand} ref={inputRef}>

@@ -9,6 +9,7 @@ import { selectFilter } from "../../redux/selectors";
 import { clearState } from "../../redux/carsSlice";
 import { useSearchParams } from "react-router-dom";
 import { ImFilter } from "react-icons/im";
+import useCloseModals from "../services/closeModals";
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,8 @@ const Filter = () => {
   const menuRef = useRef(null);
 
   const [isFilterActive, setFilterActive] = useState(false);
+
+  useCloseModals(setFilterActive);
 
   const [isMenuBrandOpen, setMenuBrandOpen] = useState(false);
   const [isMenuPriceOpen, setMenuPriceOpen] = useState(false);
@@ -122,27 +125,6 @@ const Filter = () => {
   const togglePriceMenu = () => {
     setMenuPriceOpen(!isMenuPriceOpen);
   };
-
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.code === "Escape") {
-        setFilterActive(false);
-      }
-    };
-
-    const handleClose = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setFilterActive(false);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("mousedown", handleClose);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("mousedown", handleClose);
-    };
-  }, [setFilterActive]);
 
   return (
     <div className={css.formWrapper}>

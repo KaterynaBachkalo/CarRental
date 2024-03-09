@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import css from "./Modal.module.css";
 import closeIcon from "../../img/close.svg";
 import { createPortal } from "react-dom";
+import useCloseModals from "../services/closeModals";
 
 const modalRoot = document.querySelector("#root-modal");
 
@@ -34,28 +35,7 @@ const Modal = ({ onClose, data }) => {
 
   const miles = mileage.toLocaleString("en-US", { minimumFractionDigits: 0 });
 
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.code === "Escape") {
-        onClose(false);
-      }
-    };
-
-    const handleClose = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        onClose(false);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("mousedown", handleClose);
-    document.body.classList.add("body-scroll-lock");
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.addEventListener("mousedown", handleClose);
-      document.body.classList.remove("body-scroll-lock");
-    };
-  }, [onClose]);
+  useCloseModals(onClose);
 
   return (
     modalRoot &&

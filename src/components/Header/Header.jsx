@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Iconlogo from "../../img/logo.png";
 import css from "./Header.module.css";
 import { Link, useLocation } from "react-router-dom";
 import { FiAlignRight } from "react-icons/fi";
+import useCloseModals from "../services/closeModals";
 
 const Header = () => {
   const location = useLocation();
@@ -15,26 +16,7 @@ const Header = () => {
     setBurgerActive(!isBurgerActive);
   };
 
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.code === "Escape") {
-        setBurgerActive(false);
-      }
-    };
-
-    const handleClose = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setBurgerActive(false);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("mousedown", handleClose);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("mousedown", handleClose);
-    };
-  }, [setBurgerActive]);
+  useCloseModals(setBurgerActive);
 
   return (
     <header className={css.header}>

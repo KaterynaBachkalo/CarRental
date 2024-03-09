@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import css from "./MenuModal.module.css";
 import { nanoid } from "nanoid";
+import useCloseModals from "../services/closeModals";
 
 const INITIAL_PRICE = 30;
 const iNCREMENT = 10;
@@ -21,26 +22,7 @@ const MenuModalPrice = ({ onSelect, onClose }) => {
 
   const inputRef = useRef(null);
 
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.code === "Escape") {
-        onClose(false);
-      }
-    };
-
-    const handleClose = (event) => {
-      if (inputRef.current && !inputRef.current.contains(event.target)) {
-        onClose(false);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("mousedown", handleClose);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.addEventListener("mousedown", handleClose);
-    };
-  }, [onClose]);
+  useCloseModals(onClose);
 
   return (
     <div className={css.dropdownPrice} ref={inputRef}>
