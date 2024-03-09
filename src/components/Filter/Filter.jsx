@@ -22,20 +22,20 @@ const Filter = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [brand, setBrand] = useState(searchParams.get("brand") || "");
-  const [price, setPrice] = useState(searchParams.get("price") || "");
+  const [brand, setBrand] = useState(searchParams.get("brand") ?? "");
+  const [price, setPrice] = useState(searchParams.get("price") ?? "");
   const [range, setRange] = useState([
-    searchParams.get("from") || "",
-    searchParams.get("to") || "",
+    searchParams.get("from") ?? "",
+    searchParams.get("to") ?? "",
   ]);
 
   const filter = useSelector(selectFilter);
   const { make, rentalPrice, mileage } = filter;
 
   useEffect(() => {
-    setBrand(searchParams.get("brand") || "");
-    setPrice(searchParams.get("price") || "");
-    setRange([searchParams.get("from") || "", searchParams.get("to") || ""]);
+    setBrand(searchParams.get("brand") ?? "");
+    setPrice(searchParams.get("price") ?? "");
+    setRange([searchParams.get("from") ?? "", searchParams.get("to") ?? ""]);
   }, [searchParams]);
 
   const reset = () => {
@@ -47,16 +47,7 @@ const Filter = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (brand === "" && price === "" && range.includes("")) {
-      return;
-    }
-
-    if (
-      (brand === make && price === "" && range.includes("")) ||
-      (brand === "" && price === rentalPrice && range.includes("")) ||
-      (brand === make && price === rentalPrice && range === mileage) ||
-      (brand === "" && price === "" && range === mileage)
-    ) {
+    if (!brand && !price && range.includes("")) {
       return;
     }
 
@@ -68,59 +59,31 @@ const Filter = () => {
       })
     );
 
-    if (brand !== "") {
-      setSearchParams({
-        brand,
-      });
-    }
+    handleSearch();
 
-    if (price !== "") {
-      setSearchParams({
-        price,
-      });
-    }
-
-    if (!range.includes("")) {
-      setSearchParams({
-        from: range[0],
-        to: range[1],
-      });
-    }
-
-    if ((brand !== "" || make !== "") && price !== "") {
-      setSearchParams({
-        brand,
-        price,
-      });
-    }
-
-    if (
-      (brand !== "" || make !== "") &&
-      (price !== "" || rentalPrice !== "") &&
-      !range.includes("")
-    ) {
-      setSearchParams({
-        brand,
-        price,
-        from: range[0],
-        to: range[1],
-      });
-    }
-
-    reset();
     dispatch(clearState());
+  };
+
+  const params = {};
+
+  const handleSearch = () => {
+    brand ? (params.brand = brand) : delete params["brand"];
+    price ? (params.price = price) : delete params["price"];
+    range[0] ? (params.from = range[0]) : delete params["from"];
+    range[1] ? (params.to = range[1]) : delete params["to"];
+    setSearchParams(params);
   };
 
   const handleReset = () => {
     reset();
 
-    if (make !== "" || !mileage.includes("") || rentalPrice !== "") {
+    if (make || !mileage.includes("") || rentalPrice) {
       dispatch(clearState());
       dispatch(resetFilter());
     }
     setSearchParams({});
 
-    if (brand !== "" || !range.includes("") || price !== "") {
+    if (brand || !range.includes("") || price) {
       dispatch(clearState());
       dispatch(resetFilter());
     }

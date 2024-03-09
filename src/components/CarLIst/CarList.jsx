@@ -24,12 +24,12 @@ const CarList = () => {
 
   const brand = searchParams.get("brand") || make;
   const price = searchParams.get("price") || rentalPrice;
-  const range = [
-    searchParams.get("from") || mileage[0],
-    searchParams.get("to") || mileage[1],
-  ];
+  const from = searchParams.get("from") || mileage[0];
+  const to = searchParams.get("to") || mileage[1];
 
   const [currentPage, setCurrentPage] = useState(1);
+
+  const [filteredCars, setFilteredCars] = useState([]);
 
   const loadMoreButton = useSelector(selectLoadMoreButton);
 
@@ -72,66 +72,43 @@ const CarList = () => {
     }
   }, [cars, dispatch, loadMoreButton, make, rentalPrice, mileage]);
 
-  // --------------------------------------
+  useEffect(() => {
+    let tempCars = [...cars];
 
-  let filteredCarsMake = cars?.filter((car) =>
-    car.make.toLowerCase().includes(make.toLowerCase())
-  );
+    if (brand)
+      tempCars = tempCars.filter((car) =>
+        car.make.toLowerCase().includes(make.toLowerCase())
+      );
 
-  //--------------------------------------
+    if (price)
+      tempCars = tempCars.filter(
+        (car) =>
+          Number(car.rentalPrice.replace("$", "")) <=
+          Number(rentalPrice || price)
+      );
 
-  const filteredPrice = filteredCarsMake?.filter(
-    (car) =>
-      Number(car.rentalPrice.replace("$", "")) <= Number(rentalPrice || price)
-  );
+    if (from && to)
+      tempCars = tempCars.filter(
+        (car) =>
+          car.mileage >= (mileage[0] || from) &&
+          car.mileage <= (mileage[1] || to)
+      );
 
-  //--------------------------------------
-
-  const filteredMileage =
-    filteredPrice?.length === 0
-      ? filteredCarsMake?.filter(
-          (car) =>
-            car.mileage >= (mileage[0] || range[0]) &&
-            car.mileage <= (mileage[1] || range[1])
-        )
-      : filteredPrice?.filter(
-          (car) =>
-            car.mileage >= (mileage[0] || range[0]) &&
-            car.mileage <= (mileage[1] || range[1])
-        );
+    setFilteredCars(tempCars);
+  }, [cars, price, from, to, brand, make, mileage, rentalPrice]);
 
   return (
     <div>
       {!isLoading && (
         <div className={css.wrap}>
-          {filteredMileage?.length !== 0 ? (
-            filteredMileage?.map((car) => (
+          {filteredCars?.length !== 0 ? (
+            filteredCars?.map((car) => (
               <CarItem
                 key={car.id}
                 data={car}
                 handleLoadMore={handleLoadMore}
               />
             ))
-          ) : filteredPrice?.length !== 0 ? (
-            filteredPrice?.map((car) => (
-              <CarItem
-                key={car.id}
-                data={car}
-                handleLoadMore={handleLoadMore}
-              />
-            ))
-          ) : cars?.length !== 0 ? (
-            filteredCarsMake?.map((car) => (
-              <CarItem
-                key={car.id}
-                data={car}
-                handleLoadMore={handleLoadMore}
-              />
-            ))
-          ) : filteredPrice === 0 ? (
-            <p className={css.textNotFound}>
-              A car with these parameters was not found :(
-            </p>
           ) : (
             <p className={css.textNotFound}>
               A car with these parameters was not found :(
