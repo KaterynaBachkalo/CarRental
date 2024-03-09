@@ -16,7 +16,7 @@ const Header = () => {
     setBurgerActive(!isBurgerActive);
   };
 
-  useCloseModals(setBurgerActive);
+  useCloseModals(setBurgerActive, menuRef);
 
   return (
     <header className={css.header}>

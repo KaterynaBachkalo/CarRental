@@ -35,7 +35,7 @@ const Modal = ({ onClose, data }) => {
 
   const miles = mileage.toLocaleString("en-US", { minimumFractionDigits: 0 });
 
-  useCloseModals(onClose);
+  useCloseModals(onClose, modalRef);
 
   return (
     modalRoot &&

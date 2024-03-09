@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import css from "./MenuModal.module.css";
 import { nanoid } from "nanoid";
 import useCloseModals from "../services/closeModals";
@@ -22,7 +22,7 @@ const MenuModalPrice = ({ onSelect, onClose }) => {
 
   const inputRef = useRef(null);
 
-  useCloseModals(onClose);
+  useCloseModals(onClose, inputRef);
 
   return (
     <div className={css.dropdownPrice} ref={inputRef}>

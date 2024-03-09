@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import css from "./MenuModal.module.css";
 import makes from "../../data/makes.json";
 import useCloseModals from "../services/closeModals";
@@ -10,7 +10,7 @@ const MenuModalBrand = ({ onSelect, onClose }) => {
 
   const inputRef = useRef(null);
 
-  useCloseModals(onClose);
+  useCloseModals(onClose, inputRef);
 
   return (
     <div className={css.dropdownBrand} ref={inputRef}>

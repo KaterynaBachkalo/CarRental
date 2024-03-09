@@ -18,7 +18,7 @@ const Filter = () => {
 
   const [isFilterActive, setFilterActive] = useState(false);
 
-  useCloseModals(setFilterActive);
+  useCloseModals(setFilterActive, menuRef);
 
   const [isMenuBrandOpen, setMenuBrandOpen] = useState(false);
   const [isMenuPriceOpen, setMenuPriceOpen] = useState(false);
@@ -27,10 +27,8 @@ const Filter = () => {
 
   const [brand, setBrand] = useState(searchParams.get("brand") ?? "");
   const [price, setPrice] = useState(searchParams.get("price") ?? "");
-  const [range, setRange] = useState([
-    searchParams.get("from") ?? "",
-    searchParams.get("to") ?? "",
-  ]);
+  const [from, setFrom] = useState(searchParams.get("from") ?? "");
+  const [to, setTo] = useState(searchParams.get("to") ?? "");
 
   const filter = useSelector(selectFilter);
   const { make, rentalPrice, mileage } = filter;
@@ -38,27 +36,29 @@ const Filter = () => {
   useEffect(() => {
     setBrand(searchParams.get("brand") ?? "");
     setPrice(searchParams.get("price") ?? "");
-    setRange([searchParams.get("from") ?? "", searchParams.get("to") ?? ""]);
+    setFrom(searchParams.get("from") ?? "");
+    setTo(searchParams.get("to") ?? "");
   }, [searchParams]);
 
   const reset = () => {
     setBrand("");
     setPrice("");
-    setRange(["", ""]);
+    setFrom("");
+    setTo("");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!brand && !price && range.includes("")) {
+    if (!brand && !price && !from && !to) {
       return;
     }
 
     dispatch(
       setFilter({
-        make: brand || make,
-        rentalPrice: price || rentalPrice,
-        mileage: range || mileage,
+        make: brand,
+        rentalPrice: price,
+        mileage: [from, to],
       })
     );
 
@@ -72,8 +72,8 @@ const Filter = () => {
   const handleSearch = () => {
     brand ? (params.brand = brand) : delete params["brand"];
     price ? (params.price = price) : delete params["price"];
-    range[0] ? (params.from = range[0]) : delete params["from"];
-    range[1] ? (params.to = range[1]) : delete params["to"];
+    from ? (params.from = from) : delete params["from"];
+    to ? (params.to = to) : delete params["to"];
     setSearchParams(params);
   };
 
@@ -85,11 +85,6 @@ const Filter = () => {
       dispatch(resetFilter());
     }
     setSearchParams({});
-
-    if (brand || !range.includes("") || price) {
-      dispatch(clearState());
-      dispatch(resetFilter());
-    }
   };
 
   const handleChange = (e) => {
@@ -98,16 +93,13 @@ const Filter = () => {
       setBrand(value);
     } else if (name === "price") {
       setPrice(value);
+    } else if (name === "from") {
+      setFrom(value);
+    } else if (name === "to") {
+      setTo(value);
     }
   };
 
-  const handleMileageChange = (index, value) => {
-    setRange((prevRange) => {
-      const newRange = [...prevRange];
-      newRange[index] = Number(value);
-      return newRange;
-    });
-  };
   const handleSelectBrandMenu = (selected) => {
     setBrand(selected);
     setMenuBrandOpen(false);
@@ -191,20 +183,20 @@ const Filter = () => {
               <input
                 type="number"
                 id="mileage"
-                value={range[0]}
+                value={from}
                 className={css.inputFrom}
                 name="from"
-                onChange={(e) => handleMileageChange(0, e.target.value)}
+                onChange={handleChange}
               />
               <p className={css.upperLabel}>From</p>
             </div>
             <div className={css.inputLabelWrap}>
               <input
                 type="number"
-                value={range[1]}
+                value={to}
                 className={css.inputTo}
                 name="to"
-                onChange={(e) => handleMileageChange(1, e.target.value)}
+                onChange={handleChange}
               />
               <p className={css.upperLabel}>To</p>
             </div>

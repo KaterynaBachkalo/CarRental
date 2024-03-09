@@ -1,27 +1,27 @@
 import { useEffect } from "react";
 
-const useCloseModals = (func) => {
+const useCloseModals = (func, myRef) => {
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.code === "Escape") {
-        func();
+        func(false);
       }
     };
 
     const handleClose = (event) => {
-      if (!func || !func.current || !func.current.contains(event.target)) {
-        func();
+      if (myRef?.current && !myRef?.current.contains(event.target)) {
+        func(false);
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("mousedown", handleClose);
+    window.addEventListener("keyup", handleKeyDown);
+    document.addEventListener("mouseup", handleClose);
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("mousedown", handleClose);
+      window.removeEventListener("keyup", handleKeyDown);
+      document.removeEventListener("mouseup", handleClose);
     };
-  }, [func]);
+  }, [func, myRef]);
 };
 
 export default useCloseModals;

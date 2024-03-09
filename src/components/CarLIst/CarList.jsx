@@ -22,10 +22,10 @@ const CarList = () => {
 
   const [searchParams] = useSearchParams();
 
-  const brand = searchParams.get("brand") || make;
-  const price = searchParams.get("price") || rentalPrice;
-  const from = searchParams.get("from") || mileage[0];
-  const to = searchParams.get("to") || mileage[1];
+  const brand = searchParams.get("brand");
+  const price = searchParams.get("price");
+  const from = searchParams.get("from");
+  const to = searchParams.get("to");
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -40,17 +40,12 @@ const CarList = () => {
   useEffect(() => {
     const queryParams = { page: currentPage, limit: 12 };
 
-    if (make !== "") {
-      queryParams.make = make;
+    if (make || brand) {
+      queryParams.make = make || brand;
       queryParams.page = 1;
     }
 
-    if (brand !== "") {
-      queryParams.make = brand;
-      queryParams.page = 1;
-    }
-
-    if (rentalPrice !== "" || !mileage.includes("")) {
+    if (rentalPrice || !mileage.includes("")) {
       queryParams.page = 1;
     }
 
@@ -62,15 +57,10 @@ const CarList = () => {
   };
 
   useEffect(() => {
-    if (
-      cars.length === 32 ||
-      make !== "" ||
-      rentalPrice !== "" ||
-      !mileage.includes("")
-    ) {
+    if (currentPage >= 3 || make || rentalPrice || !mileage.includes("")) {
       dispatch(setloadMoreButton(false));
     }
-  }, [cars, dispatch, loadMoreButton, make, rentalPrice, mileage]);
+  }, [currentPage, dispatch, loadMoreButton, make, rentalPrice, mileage]);
 
   useEffect(() => {
     let tempCars = [...cars];
@@ -121,7 +111,7 @@ const CarList = () => {
 
       {!isLoading && loadMoreButton && (
         <button
-          type="button"
+          type="submit"
           className={css.LoadMoreBtn}
           onClick={handleLoadMore}
         >
