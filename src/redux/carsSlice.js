@@ -68,7 +68,6 @@ const carsSlice = createSlice({
         state.items = [...state.items, ...action.payload];
         state.isLoading = false;
         state.error = null;
-        state.loadMoreButton = true;
       })
       .addCase(fetchCarsThunk.rejected, handleRejected)
 

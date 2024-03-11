@@ -27,4 +27,5 @@
 
 .IconScroll:hover {
   fill: var(--secondary-color-blue);
+  background-color: var(--primary-color-white);
 }

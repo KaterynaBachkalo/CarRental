@@ -7,7 +7,7 @@ const INITIAL_PRICE = 30;
 const iNCREMENT = 10;
 const MAX_PRICE = 500;
 
-const MenuModalPrice = ({ onSelect, onClose }) => {
+const MenuModalPrice = React.forwardRef(({ onSelect, onClose }, ref) => {
   const handleItemClick = (selectedBrand) => {
     onSelect(selectedBrand);
   };
@@ -22,7 +22,7 @@ const MenuModalPrice = ({ onSelect, onClose }) => {
 
   const inputRef = useRef(null);
 
-  useCloseModals(onClose, inputRef);
+  useCloseModals(onClose, inputRef, ref);
 
   return (
     <div className={css.dropdownPrice} ref={inputRef}>
@@ -41,6 +41,6 @@ const MenuModalPrice = ({ onSelect, onClose }) => {
       </div>
     </div>
   );
-};
+});
 
 export default MenuModalPrice;

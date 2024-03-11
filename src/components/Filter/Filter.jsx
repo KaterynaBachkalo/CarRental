@@ -16,9 +16,15 @@ const Filter = () => {
 
   const menuRef = useRef(null);
 
+  const filterRef = useRef(null);
+
+  const itemBrandRef = useRef(null);
+
+  const itemPriceRef = useRef(null);
+
   const [isFilterActive, setFilterActive] = useState(false);
 
-  useCloseModals(setFilterActive, menuRef);
+  useCloseModals(setFilterActive, menuRef, filterRef);
 
   const [isMenuBrandOpen, setMenuBrandOpen] = useState(false);
   const [isMenuPriceOpen, setMenuPriceOpen] = useState(false);
@@ -118,9 +124,15 @@ const Filter = () => {
     setMenuPriceOpen(!isMenuPriceOpen);
   };
 
+  const toggleFilter = () => {
+    setFilterActive(!isFilterActive);
+  };
+
   return (
     <div className={css.formWrapper}>
-      <ImFilter className={css.iconFilter} onClick={setFilterActive} />
+      <div className={css.iconWrap} ref={filterRef}>
+        <ImFilter className={css.iconFilter} onClick={toggleFilter} />
+      </div>
 
       <form
         className={`${css.form} ${isFilterActive ? css.active : ""}`}
@@ -141,11 +153,16 @@ const Filter = () => {
               className={css.inputBrand}
               onChange={handleChange}
             />
-            <IconChevron className={css.icon} onClick={toggleBrandMenu} />
+            <IconChevron
+              className={css.icon}
+              onClick={toggleBrandMenu}
+              ref={itemBrandRef}
+            />
             {isMenuBrandOpen && (
               <MenuModalBrand
                 onSelect={handleSelectBrandMenu}
                 onClose={setMenuBrandOpen}
+                ref={itemBrandRef}
               />
             )}
           </div>
@@ -164,11 +181,16 @@ const Filter = () => {
               className={css.inputPrice}
               onChange={handleChange}
             />
-            <IconChevron className={css.icon} onClick={togglePriceMenu} />
+            <IconChevron
+              className={css.icon}
+              onClick={togglePriceMenu}
+              ref={itemPriceRef}
+            />
             {isMenuPriceOpen && (
               <MenuModalPrice
                 onSelect={handleSelectPriceMenu}
                 onClose={setMenuPriceOpen}
+                ref={itemPriceRef}
               />
             )}
           </div>

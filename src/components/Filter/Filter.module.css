@@ -2,9 +2,15 @@
   position: relative;
 }
 
+.iconWrap {
+  display: block;
+  height: 24px;
+  width: 24px;
+  margin-bottom: 20px;
+}
+
 .iconFilter {
   display: block;
-  margin-bottom: 20px;
   height: 24px;
   width: 24px;
   cursor: pointer;

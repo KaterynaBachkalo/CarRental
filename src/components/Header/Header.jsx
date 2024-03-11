@@ -12,11 +12,13 @@ const Header = () => {
 
   const menuRef = useRef(null);
 
-  const toggleBurger = (event) => {
+  const itemRef = useRef(null);
+
+  const toggleBurger = () => {
     setBurgerActive(!isBurgerActive);
   };
 
-  useCloseModals(setBurgerActive, menuRef);
+  useCloseModals(setBurgerActive, menuRef, itemRef);
 
   return (
     <header className={css.header}>
@@ -27,7 +29,9 @@ const Header = () => {
               <img className={css.logo} src={Iconlogo} alt="Logo" />
             </Link>
 
-            <FiAlignRight className={css.burger} onClick={toggleBurger} />
+            <div className={css.burgerWrap} ref={itemRef}>
+              <FiAlignRight className={css.burger} onClick={toggleBurger} />
+            </div>
           </div>
 
           <div className={css.wrapper}>

@@ -3,14 +3,14 @@ import css from "./MenuModal.module.css";
 import makes from "../../data/makes.json";
 import useCloseModals from "../services/closeModals";
 
-const MenuModalBrand = ({ onSelect, onClose }) => {
+const MenuModalBrand = React.forwardRef(({ onSelect, onClose }, ref) => {
   const handleItemClick = (selectedBrand) => {
     onSelect(selectedBrand);
   };
 
   const inputRef = useRef(null);
 
-  useCloseModals(onClose, inputRef);
+  useCloseModals(onClose, inputRef, ref);
 
   return (
     <div className={css.dropdownBrand} ref={inputRef}>
@@ -30,6 +30,6 @@ const MenuModalBrand = ({ onSelect, onClose }) => {
       </div>
     </div>
   );
-};
+});
 
 export default MenuModalBrand;

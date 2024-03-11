@@ -52,47 +52,52 @@ const CarList = () => {
     dispatch(fetchCarsThunk(queryParams));
   }, [currentPage, dispatch, make, rentalPrice, mileage, brand]);
 
-  const handleLoadMore = () => {
-    setCurrentPage((prevPage) => (prevPage += 1));
-  };
-
-  useEffect(() => {
-    if (currentPage >= 3 || make || rentalPrice || !mileage.includes("")) {
-      dispatch(setloadMoreButton(false));
-    }
-  }, [currentPage, dispatch, loadMoreButton, make, rentalPrice, mileage]);
-
   useEffect(() => {
     let tempCars = [...cars];
 
-    if (brand)
+    if (brand) {
       tempCars = tempCars.filter((car) =>
         car.make.toLowerCase().includes(make.toLowerCase())
       );
+    }
 
-    if (price)
+    if (price) {
       tempCars = tempCars.filter(
         (car) =>
           Number(car.rentalPrice.replace("$", "")) <=
           Number(rentalPrice || price)
       );
+    }
 
-    if (from && to)
+    if (from && to) {
       tempCars = tempCars.filter(
         (car) =>
           car.mileage >= (mileage[0] || from) &&
           car.mileage <= (mileage[1] || to)
       );
+    }
 
     setFilteredCars(tempCars);
   }, [cars, price, from, to, brand, make, mileage, rentalPrice]);
+
+  const handleLoadMore = () => {
+    setCurrentPage((prevPage) => (prevPage += 1));
+  };
+
+  useEffect(() => {
+    if (brand || price || (from && to)) {
+      dispatch(setloadMoreButton(false));
+    }
+  }, [dispatch, brand, price, from, to]);
+
+  console.log(filteredCars);
 
   return (
     <div>
       {!isLoading && (
         <div className={css.wrap}>
-          {filteredCars?.length !== 0 ? (
-            filteredCars?.map((car) => (
+          {filteredCars.length !== 0 ? (
+            filteredCars.map((car) => (
               <CarItem
                 key={car.id}
                 data={car}
@@ -109,9 +114,9 @@ const CarList = () => {
 
       {isLoading && <Loader />}
 
-      {!isLoading && loadMoreButton && (
+      {!isLoading && loadMoreButton && currentPage < 3 && (
         <button
-          type="submit"
+          type="button"
           className={css.LoadMoreBtn}
           onClick={handleLoadMore}
         >
