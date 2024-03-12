@@ -90,31 +90,26 @@ const CarList = () => {
     }
   }, [dispatch, brand, price, from, to]);
 
-  console.log(filteredCars);
+  console.log(currentPage);
+  console.log(filteredCars.length);
 
   return (
     <div>
-      {!isLoading && (
-        <div className={css.wrap}>
-          {filteredCars.length !== 0 ? (
-            filteredCars.map((car) => (
-              <CarItem
-                key={car.id}
-                data={car}
-                handleLoadMore={handleLoadMore}
-              />
-            ))
-          ) : (
-            <p className={css.textNotFound}>
-              A car with these parameters was not found :(
-            </p>
-          )}
-        </div>
-      )}
-
       {isLoading && <Loader />}
 
-      {!isLoading && loadMoreButton && currentPage < 3 && (
+      <div className={css.wrap}>
+        {filteredCars?.length !== 0 ? (
+          filteredCars?.map((car) => (
+            <CarItem key={car.id} data={car} handleLoadMore={handleLoadMore} />
+          ))
+        ) : (
+          <p className={css.textNotFound}>
+            A car with these parameters was not found :(
+          </p>
+        )}
+      </div>
+
+      {!isLoading && currentPage < 3 && (
         <button
           type="button"
           className={css.LoadMoreBtn}
