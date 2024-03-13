@@ -96,11 +96,12 @@ const CarList = () => {
       {isLoading && <Loader />}
 
       <div className={css.wrap}>
-        {filteredCars?.length !== 0 ? (
+        {cars.length !== 0 &&
           filteredCars?.map((car) => (
             <CarItem key={car.id} data={car} handleLoadMore={handleLoadMore} />
-          ))
-        ) : (
+          ))}
+
+        {!isLoading && filteredCars.length === 0 && (
           <p className={css.textNotFound}>
             A car with these parameters was not found :(
           </p>
