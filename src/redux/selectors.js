@@ -21,3 +21,5 @@ export const selectVisibleCars = createSelector(
 export const selectFavoritesCars = (state) => state.cars.favorites;
 
 export const selectLoadMoreButton = (state) => state.cars.loadMoreButton;
+
+export const selectCurrentPage = (state) => state.cars.currentPage;

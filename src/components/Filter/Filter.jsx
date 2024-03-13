@@ -6,7 +6,11 @@ import MenuModalPrice from "../MenuModal/MenuModalPrice";
 import { useDispatch, useSelector } from "react-redux";
 import { resetFilter, setFilter } from "../../redux/filterSlice";
 import { selectFilter } from "../../redux/selectors";
-import { clearState } from "../../redux/carsSlice";
+import {
+  clearState,
+  setCurrentPage,
+  setloadMoreButton,
+} from "../../redux/carsSlice";
 import { useSearchParams } from "react-router-dom";
 import { ImFilter } from "react-icons/im";
 import useCloseModals from "../services/closeModals";
@@ -24,7 +28,8 @@ const Filter = () => {
 
   const [isFilterActive, setFilterActive] = useState(false);
 
-  useCloseModals(setFilterActive, menuRef, filterRef);
+  const filter = useSelector(selectFilter);
+  const { make, rentalPrice, mileage } = filter;
 
   const [isMenuBrandOpen, setMenuBrandOpen] = useState(false);
   const [isMenuPriceOpen, setMenuPriceOpen] = useState(false);
@@ -36,8 +41,7 @@ const Filter = () => {
   const [from, setFrom] = useState(searchParams.get("from") ?? "");
   const [to, setTo] = useState(searchParams.get("to") ?? "");
 
-  const filter = useSelector(selectFilter);
-  const { make, rentalPrice, mileage } = filter;
+  useCloseModals(setFilterActive, menuRef, filterRef);
 
   useEffect(() => {
     setBrand(searchParams.get("brand") ?? "");
@@ -90,7 +94,10 @@ const Filter = () => {
       dispatch(clearState());
       dispatch(resetFilter());
     }
+
     setSearchParams({});
+    dispatch(setCurrentPage(1));
+    dispatch(setloadMoreButton(true));
   };
 
   const handleChange = (e) => {

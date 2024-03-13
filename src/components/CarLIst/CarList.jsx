@@ -3,6 +3,7 @@ import CarItem from "../CarItem/CarItem";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectCars,
+  selectCurrentPage,
   selectFilter,
   selectIsLoading,
   selectLoadMoreButton,
@@ -10,7 +11,7 @@ import {
 import { fetchCarsThunk } from "../../redux/operations";
 import Loader from "../Loader/Loader";
 import css from "./CarList.module.css";
-import { setloadMoreButton } from "../../redux/carsSlice";
+import { setNextPage, setloadMoreButton } from "../../redux/carsSlice";
 import { useSearchParams } from "react-router-dom";
 
 const CarList = () => {
@@ -27,15 +28,15 @@ const CarList = () => {
   const from = searchParams.get("from");
   const to = searchParams.get("to");
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const currentPage = useSelector(selectCurrentPage);
 
   const [filteredCars, setFilteredCars] = useState([]);
-
-  const loadMoreButton = useSelector(selectLoadMoreButton);
 
   const cars = useSelector(selectCars);
 
   const isLoading = useSelector(selectIsLoading);
+
+  const loadMoreButton = useSelector(selectLoadMoreButton);
 
   useEffect(() => {
     const queryParams = { page: currentPage, limit: 12 };
@@ -81,17 +82,14 @@ const CarList = () => {
   }, [cars, price, from, to, brand, make, mileage, rentalPrice]);
 
   const handleLoadMore = () => {
-    setCurrentPage((prevPage) => (prevPage += 1));
+    dispatch(setNextPage());
   };
 
   useEffect(() => {
     if (brand || price || (from && to)) {
       dispatch(setloadMoreButton(false));
     }
-  }, [dispatch, brand, price, from, to]);
-
-  console.log(currentPage);
-  console.log(filteredCars.length);
+  }, [dispatch, brand, price, from, to, filteredCars]);
 
   return (
     <div>
@@ -109,7 +107,7 @@ const CarList = () => {
         )}
       </div>
 
-      {!isLoading && currentPage < 3 && (
+      {!isLoading && currentPage < 3 && loadMoreButton && (
         <button
           type="button"
           className={css.LoadMoreBtn}

@@ -31,6 +31,7 @@ const INITIAL_STATE = {
   error: null,
   favorites: [],
   loadMoreButton: true,
+  currentPage: 1,
 };
 
 const carsSlice = createSlice({
@@ -60,6 +61,16 @@ const carsSlice = createSlice({
         state.loadMoreButton = action.payload;
       },
     },
+    setCurrentPage: {
+      reducer(state, action) {
+        state.currentPage = action.payload;
+      },
+    },
+    setNextPage: {
+      reducer(state, action) {
+        state.currentPage = state.currentPage + 1;
+      },
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -86,5 +97,7 @@ export const {
   deleteFavorites,
   clearState,
   setloadMoreButton,
+  setCurrentPage,
+  setNextPage,
 } = carsSlice.actions;
 export const carsReducer = carsSlice.reducer;
