@@ -27,9 +27,22 @@
 }
 
 .imageWrap {
-  width: 1184px;
-  height: 400px;
+  width: 284px;
+  height: 200px;
   margin-bottom: 40px;
+}
+
+@media only screen and (min-width: 768px) {
+  .imageWrap {
+    width: 728px;
+    height: 400px;
+  }
+}
+
+@media only screen and (min-width: 1214px) {
+  .imageWrap {
+    width: 1184px;
+  }
 }
 
 .image {
@@ -52,13 +65,20 @@
   margin: 0 auto;
   margin-top: 48px;
   text-align: center;
-  width: 400px;
-  padding: 12px 99px 12px 99px;
+  width: 100%;
+  padding: 12px 20px;
 
   color: var(--primary-color-white);
   background-color: var(--primary-color-blue);
   border-radius: 12px;
   transition: background-color 0.3s;
+}
+
+@media only screen and (min-width: 768px) {
+  .chooseLink {
+    width: 400px;
+    padding: 12px 99px;
+  }
 }
 
 .chooseLink:hover {
