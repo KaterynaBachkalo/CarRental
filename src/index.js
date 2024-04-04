@@ -14,7 +14,6 @@ root.render(
     <PersistGate persistor={persistor}>
       <BrowserRouter basename="/car-rental">
         <App />
-        <ToastContainer />
       </BrowserRouter>
     </PersistGate>
   </Provider>
